@@ -4,52 +4,12 @@
   <meta charset="UTF-8">
   <title>Connexion USB réelle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white;
-    }
-
-    button {
-      background: linear-gradient(90deg, #00c9ff, #92fe9d);
-      color: black;
-      font-size: 18px;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-      transition: all 0.3s ease;
-    }
-
-    button:hover {
-      box-shadow: 0 0 25px rgba(0, 255, 255, 1);
-      transform: scale(1.05);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <button onclick="connectUSB()">Choisir un appareil USB</button>
 
-  <script>
-    async function connectUSB() {
-      try {
-        const device = await navigator.usb.requestDevice({
-          filters: [{}] // Pas de filtre = tous les périphériques
-        });
-        alert(`Appareil sélectionné :\nNom : ${device.productName}\nFabricant : ${device.manufacturerName}`);
-      } catch (error) {
-        alert("Erreur ou annulation : " + error.message);
-      }
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
