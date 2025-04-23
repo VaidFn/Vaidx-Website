@@ -29,7 +29,7 @@ async function connectUSB() {
       statusElement.classList.remove("flashable");
     }
 
-    // Afficher les informations de l'appareil
+    // Afficher les informations de l'appareil avec animation
     document.getElementById("device-info").style.display = "block";
 
   } catch (error) {
