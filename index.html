@@ -8,15 +8,17 @@
 </head>
 <body>
 
-  <button onclick="connectUSB()">Choisir un appareil USB</button>
+  <div class="container">
+    <button onclick="connectUSB()">Choisir un appareil USB</button>
 
-  <div id="device-info" style="display: none;">
-    <h3>Informations sur l'appareil :</h3>
-    <p id="device-name"></p>
-    <p id="device-manufacturer"></p>
-    <p id="device-serial"></p>
-    <p id="device-id"></p>
-    <p id="device-status"></p>
+    <div id="device-info" class="device-info">
+      <h3>Informations sur l'appareil :</h3>
+      <p id="device-name"></p>
+      <p id="device-manufacturer"></p>
+      <p id="device-serial"></p>
+      <p id="device-id"></p>
+      <p id="device-status"></p>
+    </div>
   </div>
 
   <script src="script.js"></script>
