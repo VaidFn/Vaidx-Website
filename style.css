@@ -1,27 +1,81 @@
+/* Général */
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  max-width: 600px;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+button {
+  background: linear-gradient(90deg, #00e5ff, #00bcd4);
+  color: white;
+  font-size: 18px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 255, 1);
+  transform: scale(1.05);
+}
+
+.device-info {
+  background: #1e2a33;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+.device-info.hidden {
+  display: none;
+}
+
+.device-info span {
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
   }
-  
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+  }
+
   button {
-    background: linear-gradient(90deg, #00e5ff, #00bcd4);
-    color: white;
-    font-size: 18px;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-    transition: all 0.3s ease;
+    padding: 12px 25px;
+    font-size: 16px;
   }
-  
-  button:hover {
-    box-shadow: 0 0 25px rgba(0, 255, 255, 1);
-    transform: scale(1.05);
-  }
-  
+}
