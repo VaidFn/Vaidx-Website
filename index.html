@@ -8,18 +8,15 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1>Bienvenue sur l'interface de sélection USB</h1>
-    <p class="intro-text">Cliquez sur le bouton ci-dessous pour choisir un appareil USB connecté à votre ordinateur.</p>
-    <button onclick="connectUSB()">Choisir un appareil USB</button>
-    <div id="device-info" class="device-info hidden">
-      <h3>Appareil Sélectionné :</h3>
-      <p><strong>Nom :</strong> <span id="device-name"></span></p>
-      <p><strong>Fabricant :</strong> <span id="device-manufacturer"></span></p>
-      <p><strong>Serial Number :</strong> <span id="device-serial"></span></p>
-      <p><strong>Vendor ID :</strong> <span id="device-vendor"></span></p>
-      <p><strong>Product ID :</strong> <span id="device-product"></span></p>
-    </div>
+  <button onclick="connectUSB()">Choisir un appareil USB</button>
+
+  <div id="device-info" style="display: none;">
+    <h3>Informations sur l'appareil :</h3>
+    <p id="device-name"></p>
+    <p id="device-manufacturer"></p>
+    <p id="device-serial"></p>
+    <p id="device-id"></p>
+    <p id="device-status"></p>
   </div>
 
   <script src="script.js"></script>
