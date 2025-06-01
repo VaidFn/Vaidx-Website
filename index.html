@@ -1,29 +1,93 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculatrice NumWorks</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumWorks - La Calculatrice Réinventée</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://www.numworks.com/images/favicon/favicon-32x32.png" type="image/png">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>La Calculatrice NumWorks</h1>
-      <p>Une révolution dans le monde des calculatrices graphiques !</p>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="https://www.numworks.com/images/logo-numworks.png" alt="NumWorks Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Fonctionnalités</a></li>
+                <li><a href="#why-numworks">Pourquoi NumWorks ?</a></li>
+                <li><a href="#community">Communauté</a></li>
+                <li><a href="#buy">Acheter</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-      <div class="image-container">
-        <img src="https://www.lesmandarins.com/31126-medium_default/numworks-calculatrice-graphique-langage-python-mode-examen-numworks.jpg" alt="Calculatrice NumWorks" />
-      </div>
+    <main class="hero-section">
+        <div class="hero-content">
+            <h1 class="animate-fade-in">NumWorks : La Calculatrice Graphique Simple et Intuitive</h1>
+            <p class="animate-fade-in delay-1">Découvrez la puissance du calcul avec une interface utilisateur réinventée.</p>
+            <a href="#features" class="btn-primary animate-fade-in delay-2">Explorer les Fonctionnalités</a>
+        </div>
+        <div class="calculator-display animate-scale-up">
+            <img src="https://www.lesmandarins.com/31126-medium_default/numworks-calculatrice-graphique-langage-python-mode-examen-numworks.jpg" alt="NumWorks Calculator" class="calculator-img">
+            <div class="glow-effect"></div>
+        </div>
     </main>
 
-    <footer>
-      <p>Site non officiel - Projet étudiant</p>
-    </footer>
-  </div>
+    <section id="features" class="features-section">
+        <h2 class="animate-slide-up">Des Fonctionnalités qui Changent Tout</h2>
+        <div class="features-grid">
+            <div class="feature-item animate-slide-up delay-1">
+                <img src="https://www.numworks.com/images/home/feature-python.svg" alt="Python Icon">
+                <h3>Programmation Python</h3>
+                <p>Découvrez la puissance de Python directement sur votre calculatrice, accessible à tous.</p>
+            </div>
+            <div class="feature-item animate-slide-up delay-2">
+                <img src="https://www.numworks.com/images/home/feature-exam.svg" alt="Exam Mode Icon">
+                <h3>Mode Examen</h3>
+                <p>Conforme aux réglementations en vigueur pour vos examens, facile à activer.</p>
+            </div>
+            <div class="feature-item animate-slide-up delay-3">
+                <img src="https://www.numworks.com/images/home/feature-intuitive.svg" alt="Intuitive Icon">
+                <h3>Interface Intuitive</h3>
+                <p>Naviguez avec fluidité grâce à une interface claire et des applications bien pensées.</p>
+            </div>
+            <div class="feature-item animate-slide-up delay-4">
+                <img src="https://www.numworks.com/images/home/feature-updates.svg" alt="Updates Icon">
+                <h3>Mises à Jour Gratuites</h3>
+                <p>Bénéficiez de nouvelles fonctionnalités et améliorations régulières et gratuites.</p>
+            </div>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <section id="why-numworks" class="why-numworks-section">
+        <h2 class="animate-slide-up">Pourquoi Choisir NumWorks ?</h2>
+        <div class="why-content">
+            <div class="why-text animate-fade-in delay-1">
+                <p>NumWorks a été conçue pour simplifier l'apprentissage et la compréhension des mathématiques. Son design épuré, son interface utilisateur intuitive et l'intégration du langage Python en font un outil pédagogique sans précédent. Fini les calculatrices complexes et intimidantes !</p>
+                <p>Que vous soyez lycéen, étudiant ou simplement curieux, NumWorks vous offre une expérience de calcul fluide et agréable, vous permettant de vous concentrer sur ce qui compte vraiment : comprendre et résoudre les problèmes.</p>
+            </div>
+            <div class="why-image animate-fade-in delay-2">
+                <img src="https://www.numworks.com/images/home/app-graphs.png" alt="NumWorks Graphing App">
+            </div>
+        </div>
+    </section>
+
+    <section id="call-to-action" class="call-to-action">
+        <h2 class="animate-fade-in">Prêt à Réinventer Votre Expérience de Calcul ?</h2>
+        <a href="#buy" class="btn-secondary animate-fade-in delay-1">Acheter Maintenant</a>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 NumWorks. Tous droits réservés.</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"></a>
+            <a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitterx--v1.png" alt="Twitter"></a>
+            <a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new--v1.png" alt="Instagram"></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
