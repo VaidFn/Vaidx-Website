@@ -1,68 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-* {
+body {
+  font-family: sans-serif;
+  background-color: #ffffff;
+  color: #000000;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(to right, #1f1f2e, #202040);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
-  padding: 20px;
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px #00ffff44;
-  max-width: 500px;
-  transition: transform 0.3s ease;
-}
-
-.container:hover {
-  transform: scale(1.02);
-}
-
-h1 {
-  font-size: 2em;
-  color: #00ffff;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 1.1em;
-  margin-bottom: 30px;
-}
-
-.image-box img {
-  width: 200px;
-  transition: transform 0.5s;
-}
-
-.image-box img:hover {
-  transform: scale(1.1) rotate(-3deg);
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
 }
 
 button {
-  padding: 12px 24px;
-  font-size: 1em;
-  color: #1f1f2e;
-  background: #00ffff;
+  padding: 10px 20px;
+  background-color: #007bff;
   border: none;
-  border-radius: 10px;
+  color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  background: #00cccc;
-  transform: scale(1.05);
 }
