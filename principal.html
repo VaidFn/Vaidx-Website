@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaidx NumWorks</title>
+  <style>
+    :root {
+      --jaune: #f9b800;
+      --jaune-clair: #ffcf3d;
+      --noir: #0d0d0d;
+      --gris: #1c1c1c;
+      --blanc: #eaeaea;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--noir);
+      color: var(--blanc);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--gris);
+      box-shadow: 0 3px 10px #0008;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: var(--jaune);
+      text-shadow: 0 0 10px var(--jaune);
+      letter-spacing: 1px;
+    }
+
+    #btn-credits {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(90deg, var(--jaune), var(--jaune-clair));
+      color: #000;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: bold;
+      box-shadow: 0 0 16px var(--jaune);
+      text-decoration: none;
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+
+    #btn-credits:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px var(--jaune);
+    }
+
+    main {
+      flex: 1;
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .logo-container {
+      text-align: center;
+    }
+
+    .logo-container img {
+      width: 250px;
+      border-radius: 16px;
+      filter: drop-shadow(0 0 12px var(--jaune));
+      transition: transform 0.3s ease, filter 0.3s ease;
+      cursor: pointer;
+    }
+
+    .logo-container img:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 20px var(--jaune));
+    }
+
+    section {
+      background: var(--gris);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 0 20px #f9b80033;
+      transition: box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      box-shadow: 0 0 30px #f9b80077;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      color: var(--jaune);
+      margin-bottom: 20px;
+    }
+
+    section p,
+    section li {
+      font-size: 1.1rem;
+    }
+
+    section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    section li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 10px;
+    }
+
+    section li::before {
+      content: '🟡';
+      position: absolute;
+      left: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--jaune), var(--jaune-clair));
+      color: #000;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 10px 8px 0 0;
+      box-shadow: 0 0 16px #f9b80099;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 28px #f9b800;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      background: #111;
+      font-weight: bold;
+      color: var(--jaune);
+      border-top: 1px solid #333;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.2rem; }
+      .btn { display: block; width: 100%; margin: 10px 0; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <a href="credits.html" id="btn-credits">📝 Crédits</a>
+
+  <header>
+    <h1>Vaidx NumWorks</h1>
+  </header>
+
+  <main>
+    <div class="logo-container">
+      <img src="https://cdn.numworks.com/2e2d7f5f.png" alt="Logo NumWorks" />
+    </div>
+
+    <section>
+      <h2>📌 Qu'est-ce que NumWorks ?</h2>
+      <p>NumWorks est une calculatrice graphique open-source, moderne et personnalisable, compatible Python. Elle permet d'apprendre à programmer tout en rendant les maths plus accessibles, claires et interactives.</p>
+    </section>
+
+    <section>
+      <h2>🛠️ Fonctions du site</h2>
+      <ul>
+        <li>Scripts Python pour maths, jeux et physique</li>
+        <li>Modifications avancées du firmware (Epsilon)</li>
+        <li>Simulateurs, mini-jeux, interfaces natives</li>
+        <li>Connectivité USB, WSL2, Git & Android</li>
+        <li>Guides complets pour Windows, Linux, macOS</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🚀 Accès rapide</h2>
+      <a class="btn" href="telechargements.html">📥 Apps personnalisées (.nwa)</a>
+      <a class="btn" href="simulateur.html">🖥️ Simulateur NumWorks</a>
+      <a class="btn" href="python.html">🐍 Scripts Python</a>
+      <a class="btn" href="usb.html">🔌 Connexion USB</a>
+      <a class="btn" href="customapp.html">🛠️ App native C</a>
+      <a class="btn" href="raspberry.html">🍓 Raspberry & Wifi</a>
+      <a class="btn" href="comparaison.html">📊 Comparaison</a>
+      <a class="btn" href="myapp.html">🧠 Memory Stressor</a>
+      <a class="btn" href="faq.html">🤔 FAQ</a>
+    </section>
+
+    <section>
+      <h2>🌱 À venir</h2>
+      <ul>
+        <li>Portail communautaire avec partage d'apps</li>
+        <li>Tutoriels vidéo avec chapitrage interactif</li>
+        <li>Transfert direct via WebUSB</li>
+        <li>API simplifiée pour coder en C++</li>
+        <li>Personnalisation des menus et icônes</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Vaidx • Créé avec passion pour les fans de NumWorks 🐍
+  </footer>
+</body>
+</html>

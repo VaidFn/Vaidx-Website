@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vaidx Numworks - Raspberry Pi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    header {
+      background-color: #1b1b1b;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 2px 10px #000;
+    }
+
+    header h1 {
+      color: #f9b800;
+      font-size: 2.8rem;
+      text-shadow: 0 0 8px #f9b80088;
+      user-select: none;
+    }
+
+    main {
+      flex: 1;
+      padding: 50px 5%;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    section {
+      background-color: #1c1c1c;
+      padding: 40px;
+      border-radius: 14px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 14px #f9b80033;
+      user-select: none;
+    }
+
+    section h2 {
+      color: #ffce3a;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      transition: color 0.3s ease;
+      cursor: default;
+    }
+    section h2:hover {
+      color: #f9b800;
+    }
+
+    section p,
+    section ul {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #e0e0e0;
+      margin-bottom: 15px;
+    }
+
+    section ul {
+      list-style-type: '🟠 ';
+      padding-left: 20px;
+    }
+
+    section ul li {
+      position: relative;
+      transition: color 0.25s ease;
+      cursor: default;
+    }
+    section ul li:hover {
+      color: #f9b800;
+    }
+
+    .btn-simulateur {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #f9b800, #ffcf3d);
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 0 15px #f9b800aa;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+      will-change: transform, box-shadow;
+    }
+
+    .btn-simulateur:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 30px #f9b800ff;
+      filter: brightness(1.1);
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      text-align: center;
+      padding: 18px;
+      font-size: 1rem;
+      color: #f9b800;
+      border-top: 1px solid #333;
+      margin-top: auto;
+      user-select: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #btn-credits {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(90deg, #f9b800, #ffcf3d);
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px #f9b800aa;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      user-select: none;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Segoe UI', sans-serif;
+      text-decoration: none;
+    }
+
+    #btn-credits:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px #f9b800ff;
+      filter: brightness(1.1);
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 25px;
+      }
+
+      .btn-simulateur {
+        width: 100%;
+        text-align: center;
+      }
+
+      #btn-credits {
+        top: 15px;
+        left: 15px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="credits.html" id="btn-credits">📝 Crédits</a>
+
+  <header>
+    <h1>Utiliser NumWorks avec un Raspberry Pi</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Pourquoi utiliser un Raspberry Pi ?</h2>
+      <p>Un Raspberry Pi peut servir de mini-PC dédié pour le développement, la programmation Python, ou même la compilation de firmwares NumWorks directement depuis un environnement Linux compact, silencieux et peu énergivore.</p>
+    </section>
+
+    <section>
+      <h2>Ce que tu peux faire avec</h2>
+      <ul>
+        <li>Flasher ta calculatrice sans PC, juste avec un Raspberry</li>
+        <li>Écrire des scripts Python et les transférer via USB</li>
+        <li>Compiler ton propre firmware Epsilon personnalisé</li>
+        <li>Tester des apps natives `.nwa` en toute autonomie</li>
+        <li>Faire du SSH depuis la calculatrice (via UART ou adaptateur)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Matériel recommandé</h2>
+      <ul>
+        <li>Raspberry Pi 4 ou 400 avec Raspberry Pi OS Lite</li>
+        <li>Clavier / écran ou accès SSH</li>
+        <li>Câble USB-C vers USB-A</li>
+        <li>Optionnel : adaptateur UART pour communication série</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Ressources utiles</h2>
+      <ul>
+        <li><a href="https://github.com/numworks/epsilon" target="_blank">Repo officiel Epsilon</a></li>
+        <li><a href="https://doc.numworks.com/" target="_blank">Documentation NumWorks</a></li>
+        <li><a href="https://www.raspberrypi.com/software/" target="_blank">Télécharger Raspberry Pi OS</a></li>
+        <li><a href="https://zardam.github.io/post/raspberrypi-numworks/" target="_blank">Tutoriel de Zardam (Raspberry Pi + NumWorks)</a></li>
+      </ul>
+      <a href="usb.html" class="btn-simulateur">🔌 Voir les commandes USB</a>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Vaidx • Site dédié à NumWorks & Raspberry Pi • 🍓 + 🐍
+  </footer>
+</body>
+</html>

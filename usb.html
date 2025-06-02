@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vaidx NumWorks - WebDFU</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Reset et box-sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #f0e6d2;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    main {
+      background: #1e1e1e;
+      max-width: 680px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 20px 3px #f9b700aa;
+      padding: 30px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    h2 {
+      color: #f9b700;
+      font-size: 2.6rem;
+      font-weight: 700;
+      text-align: center;
+      text-shadow: 0 0 15px #f9b700cc;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: #f9b700dd;
+      margin-bottom: 8px;
+      user-select: none;
+    }
+
+    /* Input fichier custom */
+    input[type="file"] {
+      display: none;
+    }
+    .file-label {
+      display: inline-block;
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(90deg, #f9b700, #ffc93d);
+      color: #2b2b2b;
+      font-weight: 700;
+      font-size: 1.15rem;
+      border-radius: 50px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 5px 15px #f9b700bb;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .file-label:hover {
+      background: linear-gradient(90deg, #ffc93d, #f9b700);
+      box-shadow: 0 6px 20px #ffc93dcc;
+    }
+
+    /* Boutons */
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    button {
+      flex: 1 1 160px;
+      padding: 14px 0;
+      border-radius: 50px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2b2b2b;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(90deg, #f9b700, #ffc93d);
+      box-shadow: 0 6px 20px #f9b700bb;
+      user-select: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    button:hover, button:focus {
+      outline: none;
+      transform: scale(1.08);
+      box-shadow: 0 8px 28px #ffc93dcc;
+    }
+
+    /* Log */
+    .log {
+      background: #272727;
+      border-radius: 15px;
+      padding: 18px 22px;
+      font-family: monospace, monospace;
+      font-size: 1rem;
+      line-height: 1.3;
+      height: 190px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      color: #f0e6d2;
+      border: 2px solid #f9b700aa;
+      box-shadow: inset 0 0 15px #ffc93a99;
+      user-select: text;
+    }
+    /* Scrollbar custom */
+    .log::-webkit-scrollbar {
+      width: 8px;
+    }
+    .log::-webkit-scrollbar-track {
+      background: #1e1e1e;
+      border-radius: 12px;
+    }
+    .log::-webkit-scrollbar-thumb {
+      background: #f9b700aa;
+      border-radius: 12px;
+      transition: background 0.3s ease;
+    }
+    .log::-webkit-scrollbar-thumb:hover {
+      background: #ffc93dcc;
+    }
+
+    /* Code style */
+    code {
+      font-family: monospace;
+      background: #3c3c3c;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 25px 20px 30px;
+      }
+      button {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h2>WebDFU NumWorks</h2>
+
+    <label for="fileInput">Choisissez un fichier <code>.dfu</code> :</label>
+    <label for="fileInput" class="file-label" tabindex="0">📂 Choisir un fichier</label>
+    <input type="file" id="fileInput" accept=".dfu" />
+
+    <div class="buttons">
+      <button id="infoButton" type="button">ℹ️ Afficher les infos</button>
+      <button id="flashButton" type="button">🔁 Flasher</button>
+      <button id="verifyButton" type="button">✅ Vérifier</button>
+      <button id="eraseButton" type="button">🗑️ Effacer</button>
+    </div>
+
+    <div class="log" id="log" aria-live="polite" aria-atomic="false">Journal WebDFU en attente...</div>
+  </main>
+
+  <script>
+    const logArea = document.getElementById("log");
+    const fileInput = document.getElementById("fileInput");
+    const fileLabel = document.querySelector(".file-label");
+
+    function log(message) {
+      logArea.textContent += message + "\n";
+      logArea.scrollTop = logArea.scrollHeight;
+    }
+
+    // Met à jour le label fichier choisi
+    fileInput.addEventListener('change', () => {
+      if(fileInput.files.length > 0){
+        fileLabel.textContent = `📂 ${fileInput.files[0].name}`;
+      } else {
+        fileLabel.textContent = "📂 Choisir un fichier";
+      }
+    });
+
+    async function getDevice() {
+      try {
+        const device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x0483 }] });
+        await device.open();
+        await device.selectConfiguration(1);
+        await device.claimInterface(0);
+        log("🔌 Appareil connecté !");
+        return device;
+      } catch (error) {
+        log("❌ Erreur : " + error.message);
+        throw error;
+      }
+    }
+
+    document.getElementById("infoButton").addEventListener("click", async () => {
+      try {
+        const device = await getDevice();
+        const info = `
+🖥️ Infos périphérique USB :
+- Vendor ID : 0x${device.vendorId.toString(16)}
+- Product ID : 0x${device.productId.toString(16)}
+- Manufacturer : ${device.manufacturerName || "inconnu"}
+- Produit : ${device.productName || "inconnu"}
+- Numéro de série : ${device.serialNumber || "inconnu"}
+        `;
+        log(info);
+      } catch (err) {
+        log("❌ Impossible d'obtenir les infos : " + err.message);
+      }
+    });
+
+    document.getElementById("flashButton").addEventListener("click", () => {
+      log("⚠️ Flash désactivé : la librairie DFU.js n'est pas intégrée.");
+    });
+
+    document.getElementById("verifyButton").addEventListener("click", () => {
+      log("⚠️ Vérification désactivée : la librairie DFU.js n'est pas intégrée.");
+    });
+
+    document.getElementById("eraseButton").addEventListener("click", () => {
+      log("⚠️ Effacement désactivé : la librairie DFU.js n'est pas intégrée.");
+    });
+  </script>
+</body>
+</html>

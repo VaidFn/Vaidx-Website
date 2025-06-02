@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simulateur NumWorks</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
+
+    /* Animation de dégradé de fond */
+    @keyframes backgroundGradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background: linear-gradient(270deg, #0d0d0d, #1a1a1a, #222a3a, #0d0d0d);
+      background-size: 800% 800%;
+      animation: backgroundGradient 20s ease infinite;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-top: 40px;
+      margin-bottom: 30px;
+      color: #f9b800;
+      text-shadow: 0 0 10px #f9b800bb;
+      font-size: 2rem;
+      letter-spacing: 1.2px;
+      user-select: none;
+    }
+
+    /* Conteneur avec ombre animée autour de l'iframe */
+    .iframe-container {
+      position: relative;
+      border-radius: 18px;
+      box-shadow:
+        0 0 30px 4px rgba(249, 184, 0, 0.5),
+        0 0 50px 15px rgba(249, 184, 0, 0.2);
+      transition: box-shadow 0.3s ease;
+      overflow: hidden;
+      width: 320px; /* Légèrement plus large que l'iframe */
+      height: 610px;
+      margin-bottom: 40px;
+      cursor: default;
+    }
+    .iframe-container:hover {
+      box-shadow:
+        0 0 50px 8px #f9b800cc,
+        0 0 70px 25px #f9b80099;
+    }
+
+    iframe {
+      border-radius: 14px;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #000;
+    }
+
+    a.back-btn {
+      padding: 12px 28px;
+      background: linear-gradient(90deg, #f9b800, #ffcf3d);
+      color: #000;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 30px;
+      box-shadow: 0 0 15px #f9b800cc;
+      font-size: 1.1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      will-change: transform;
+      /* Ajout d'un léger effet "pop" à l'apparition */
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+      transform: translateY(10px);
+      display: inline-block;
+      margin-bottom: 50px;
+    }
+    a.back-btn:hover,
+    a.back-btn:focus {
+      box-shadow: 0 0 30px #f9b800ff;
+      transform: scale(1.1);
+      outline: none;
+    }
+
+    /* Animation fade in + translate pour le bouton */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Effet subtil de pulsation sur le titre */
+    @keyframes pulseGlow {
+      0%, 100% {
+        text-shadow: 0 0 10px #f9b800cc;
+      }
+      50% {
+        text-shadow: 0 0 18px #ffd93bdd;
+      }
+    }
+    h1 {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Simulateur NumWorks</h1>
+
+  <div class="iframe-container" aria-label="Simulateur NumWorks">
+    <iframe src="https://www.numworks.com/simulator/embed/" title="Simulateur NumWorks"></iframe>
+  </div>
+
+  <a href="index.html" class="back-btn" role="button" aria-label="Retour à l'accueil">← Retour à l'accueil</a>
+
+  <script src="https://www.numworks.com/simulator/embed.js"></script>
+
+</body>
+</html>
