@@ -92,6 +92,23 @@
       box-shadow: 0 0 30px var(--jaune);
     }
 
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      left: 70px;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--jaune);
+      z-index: 999;
+      transition: transform 0.3s ease;
+    }
+
+    #theme-toggle:hover {
+      transform: scale(1.2);
+    }
+
     main {
       flex: 1;
       width: 90%;
@@ -220,6 +237,7 @@
 </head>
 <body>
   <a href="credits.html" id="btn-credits">📝 Crédits</a>
+  <button id="theme-toggle" title="Changer de thème">🌙</button>
 
   <header>
     <div class="top-buttons">
@@ -298,5 +316,35 @@
   <footer>
     © 2025 Vaidx • Créé avec passion pour les fans de NumWorks 🐍
   </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    function setTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.style.setProperty('--noir', '#f0f0f0');
+        document.documentElement.style.setProperty('--gris', '#ffffff');
+        document.documentElement.style.setProperty('--blanc', '#111');
+        toggleBtn.textContent = '🌙';
+      } else {
+        document.documentElement.style.setProperty('--noir', '#0d0d0d');
+        document.documentElement.style.setProperty('--gris', '#1c1c1c');
+        document.documentElement.style.setProperty('--blanc', '#eaeaea');
+        toggleBtn.textContent = '☀️';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const current = localStorage.getItem('theme') || 'dark';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      setTheme(savedTheme);
+    });
+  </script>
 </body>
 </html>
