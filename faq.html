@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>FAQ - Vaidx NumWorks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -38,9 +38,11 @@
       z-index: 1000;
     }
 
-    a#btn-credits:hover {
+    a#btn-credits:hover,
+    a#btn-credits:focus {
       transform: scale(1.08);
       box-shadow: 0 8px 25px rgba(255, 212, 0, 0.6);
+      outline: none;
     }
 
     header h1 {
@@ -71,7 +73,7 @@
       margin-top: 1rem;
     }
 
-    .faq-question {
+    button.faq-question {
       background: #2a2a2a;
       color: #ffd400;
       padding: 1rem 1.2rem;
@@ -86,20 +88,31 @@
       align-items: center;
       cursor: pointer;
       transition: background 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
 
-    .faq-question:hover,
-    .faq-question.active {
+    button.faq-question:hover,
+    button.faq-question:focus {
+      background: #ffdb4d;
+      color: #121212;
+      outline: none;
+    }
+
+    button.faq-question.active {
       background: #ffd400;
       color: #121212;
     }
 
-    .faq-question svg {
+    button.faq-question svg {
       transition: transform 0.4s ease;
       fill: currentColor;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-left: 10px;
     }
 
-    .faq-question.active svg {
+    button.faq-question.active svg {
       transform: rotate(180deg);
     }
 
@@ -119,7 +132,7 @@
 
     .faq-answer.show {
       padding: 1rem;
-      max-height: 300px;
+      max-height: 500px; /* plus haut pour textes longs */
     }
 
     footer {
@@ -133,7 +146,7 @@
       header h1 {
         font-size: 2rem;
       }
-      .faq-question {
+      button.faq-question {
         font-size: 1rem;
       }
       .faq-answer {
@@ -143,21 +156,21 @@
   </style>
 </head>
 <body>
-  <a href="credits.html" id="btn-credits">📝 Crédits</a>
+  <a href="credits.html" id="btn-credits" aria-label="Page des crédits">📝 Crédits</a>
 
   <header>
     <h1>FAQ - Vaidx NumWorks</h1>
   </header>
 
   <main>
-    <section class="faq-section">
+    <section class="faq-section" aria-label="Foire aux questions">
 
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-label">
           Qu'est-ce que la calculatrice NumWorks ?
-          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
         </button>
-        <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-label">
+        <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-label" hidden>
           <p>La NumWorks est une calculatrice graphique moderne, open-source, qui permet aussi de programmer en Python directement sur l'appareil.</p>
         </div>
       </div>
@@ -165,9 +178,9 @@
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-label">
           Comment installer des apps personnalisées ?
-          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
         </button>
-        <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-label">
+        <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-label" hidden>
           <p>Tu peux installer des .nwa via notre section Téléchargements, en utilisant le logiciel officiel NumWorks ou des méthodes avancées par terminal.</p>
         </div>
       </div>
@@ -175,9 +188,9 @@
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-label">
           Est-ce que NumWorks supporte Python ?
-          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
         </button>
-        <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-label">
+        <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-label" hidden>
           <p>Oui, un interpréteur Python intégré permet de coder, tester et exécuter des scripts éducatifs, scientifiques ou créatifs.</p>
         </div>
       </div>
@@ -185,9 +198,9 @@
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false" aria-controls="faq4" id="faq4-label">
           Puis-je modifier le firmware ?
-          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
         </button>
-        <div class="faq-answer" id="faq4" role="region" aria-labelledby="faq4-label">
+        <div class="faq-answer" id="faq4" role="region" aria-labelledby="faq4-label" hidden>
           <p>Absolument. Le firmware Epsilon est open-source. Tu peux le compiler, le modifier et flasher ta propre version facilement.</p>
         </div>
       </div>
@@ -195,9 +208,9 @@
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false" aria-controls="faq5" id="faq5-label">
           Comment utiliser le simulateur en ligne ?
-          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
         </button>
-        <div class="faq-answer" id="faq5" role="region" aria-labelledby="faq5-label">
+        <div class="faq-answer" id="faq5" role="region" aria-labelledby="faq5-label" hidden>
           <p>Notre simulateur fonctionne dans ton navigateur, sans installation. Il reproduit fidèlement l'interface NumWorks.</p>
         </div>
       </div>
@@ -205,10 +218,51 @@
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false" aria-controls="faq6" id="faq6-label">
           Le site est-il adapté aux débutants ?
-          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
         </button>
-        <div class="faq-answer" id="faq6" role="region" aria-labelledby="faq6-label">
+        <div class="faq-answer" id="faq6" role="region" aria-labelledby="faq6-label" hidden>
           <p>Oui, tout est pensé pour être clair, illustré, et progressif, avec des exemples concrets à chaque étape.</p>
+        </div>
+      </div>
+
+      <!-- Questions supplémentaires -->
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq7" id="faq7-label">
+          Quel est le prix moyen de la NumWorks ?
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq7" role="region" aria-labelledby="faq7-label" hidden>
+          <p>La calculatrice NumWorks coûte généralement entre 90€ et 110€, selon les revendeurs et promotions.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq8" id="faq8-label">
+          La batterie est-elle rechargeable ?
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq8" role="region" aria-labelledby="faq8-label" hidden>
+          <p>Oui, la NumWorks dispose d'une batterie rechargeable via un câble USB-C.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq9" id="faq9-label">
+          Peut-on sauvegarder ses programmes Python ?
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq9" role="region" aria-labelledby="faq9-label" hidden>
+          <p>Oui, la calculatrice permet de sauvegarder et organiser tes scripts Python directement sur l’appareil.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq10" id="faq10-label">
+          Existe-t-il une communauté autour de NumWorks ?
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq10" role="region" aria-labelledby="faq10-label" hidden>
+          <p>Oui, la communauté est active sur des forums, GitHub, Reddit, et plusieurs groupes pour échanger astuces et projets.</p>
         </div>
       </div>
 
@@ -223,15 +277,28 @@
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
-        document.querySelectorAll('.faq-question').forEach(b => {
-          b.setAttribute('aria-expanded', 'false');
-          b.classList.remove('active');
-          b.nextElementSibling.classList.remove('show');
-        });
-        if (!expanded) {
+        if (expanded) {
+          // Fermer la question si déjà ouverte
+          btn.setAttribute('aria-expanded', 'false');
+          btn.classList.remove('active');
+          const answer = btn.nextElementSibling;
+          answer.classList.remove('show');
+          answer.hidden = true;
+        } else {
+          // Fermer toutes les questions ouvertes
+          document.querySelectorAll('.faq-question').forEach(b => {
+            b.setAttribute('aria-expanded', 'false');
+            b.classList.remove('active');
+            const ans = b.nextElementSibling;
+            ans.classList.remove('show');
+            ans.hidden = true;
+          });
+          // Ouvrir la question cliquée
           btn.setAttribute('aria-expanded', 'true');
           btn.classList.add('active');
-          btn.nextElementSibling.classList.add('show');
+          const answer = btn.nextElementSibling;
+          answer.classList.add('show');
+          answer.hidden = false;
         }
       });
     });
