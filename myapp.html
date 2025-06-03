@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>MEMORY STRESSOR - Vaidx NumWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Reset & basics */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header {
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      color: #f9b800;
+      text-shadow: 0 0 15px #f9b800cc;
+      font-weight: 900;
+    }
+
+    main {
+      max-width: 900px;
+      width: 100%;
+      background-color: #1c1c1c;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 30px #f9b80044;
+    }
+
+    .app-icon {
+      width: 180px;
+      margin: 0 auto 30px;
+      filter: drop-shadow(0 0 15px #f9b800aa);
+    }
+
+    .app-name {
+      font-size: 3rem;
+      color: #ffd23f;
+      font-weight: 800;
+      margin-bottom: 15px;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 10px #ffd23fbb;
+    }
+
+    .app-desc {
+      font-size: 1.35rem;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      color: #ddd;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: linear-gradient(90deg, #f9b800, #ffcf3d);
+      color: #000;
+      font-weight: 700;
+      padding: 18px 50px;
+      border-radius: 40px;
+      font-size: 1.25rem;
+      text-decoration: none;
+      box-shadow: 0 0 25px #f9b800dd;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+
+    .btn-download:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 45px #f9b800ff;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffce3a;
+      margin-top: 50px;
+      margin-bottom: 25px;
+      text-shadow: 0 0 8px #ffce3a99;
+    }
+
+    .app-function {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: #e0e0e0;
+      text-align: left;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .app-function ul {
+      margin-top: 15px;
+      list-style-type: '🧠 ';
+      padding-left: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .app-name {
+        font-size: 2rem;
+      }
+
+      .btn-download {
+        width: 100%;
+        padding: 18px 0;
+      }
+
+      .app-function {
+        max-width: 100%;
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vaidx NumWorks</h1>
+  </header>
+
+  <main>
+    <img src="/ICONS/memory-stressor.png" alt="Icône MEMORY STRESSOR" class="app-icon" />
+    <div class="app-name">MEMORY STRESSOR</div>
+    <div class="app-desc">
+      Test de stress mémoire pour la calculatrice NumWorks.<br />
+      Pousse ta calculatrice à ses limites en testant la gestion de la mémoire.
+    </div>
+    <a href="https://github.com/Vaidx0/Vaidx-Website/raw/refs/heads/main/NUMWORKS/MEMORY%20STRESSOR.nwa" 
+       class="btn-download" 
+       download="memory-stressor.nwa"
+       title="Télécharger MEMORY STRESSOR pour NumWorks">
+      📥 Télécharger l'application
+    </a>
+
+    <h2 class="section-title">Fonctionnement de MEMORY STRESSOR</h2>
+    <div class="app-function">
+      <p>
+        MEMORY STRESSOR est une application conçue pour tester la gestion de la mémoire vive sur ta calculatrice NumWorks. 
+        Elle effectue une série de tests intensifs en allouant et manipulant des blocs de mémoire, ce qui permet d'observer comment la calculatrice réagit sous une charge mémoire élevée.
+      </p>
+      <p>
+        Voici les principales étapes et fonctionnalités :
+      </p>
+      <ul>
+        <li>Allocation progressive de blocs mémoire de tailles variables.</li>
+        <li>Exécution de calculs et d’opérations pour solliciter la mémoire utilisée.</li>
+        <li>Gestion des erreurs de mémoire pour éviter les plantages.</li>
+        <li>Mesure de la vitesse de traitement et des temps de réponse sous stress.</li>
+        <li>Affichage clair des résultats pour analyser les capacités de ta calculatrice.</li>
+      </ul>
+      <p>
+        Cette application est utile pour :
+      </p>
+      <ul>
+        <li>Les développeurs qui veulent optimiser leurs scripts Python pour NumWorks.</li>
+        <li>Les passionnés qui souhaitent comprendre les limites matérielles de la calculatrice.</li>
+        <li>Tester des modifications avancées du firmware ou des applications natives.</li>
+      </ul>
+      <p>
+        <strong>Attention :</strong> Ce test peut fortement solliciter ta calculatrice, il est recommandé de sauvegarder ton travail avant utilisation.
+      </p>
+    </div>
+  </main>
+</body>
+</html>

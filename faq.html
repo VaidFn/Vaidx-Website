@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ - Vaidx NumWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top left, #1a1a1a, #0d0d0d);
+      color: #f5f5f5;
+      padding: 2rem 1rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    a#btn-credits {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #ffd400;
+      color: #121212;
+      padding: 10px 16px;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(255, 212, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    a#btn-credits:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 25px rgba(255, 212, 0, 0.6);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: #ffd400;
+      text-shadow: 0 0 10px rgba(255, 212, 0, 0.5);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .faq-section {
+      width: 100%;
+      max-width: 800px;
+      background-color: #1f1f1f;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 0 30px rgba(255, 212, 0, 0.07);
+    }
+
+    .faq-section h2 {
+      color: #f5f5f5;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .faq-item + .faq-item {
+      margin-top: 1rem;
+    }
+
+    .faq-question {
+      background: #2a2a2a;
+      color: #ffd400;
+      padding: 1rem 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      width: 100%;
+      text-align: left;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .faq-question:hover,
+    .faq-question.active {
+      background: #ffd400;
+      color: #121212;
+    }
+
+    .faq-question svg {
+      transition: transform 0.4s ease;
+      fill: currentColor;
+    }
+
+    .faq-question.active svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.4s ease;
+      background-color: #141414;
+      border-left: 3px solid #ffd400;
+      margin-top: 0.5rem;
+      padding: 0 1rem;
+      border-radius: 0 0 12px 12px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .faq-answer.show {
+      padding: 1rem;
+      max-height: 300px;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ffd40088;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .faq-question {
+        font-size: 1rem;
+      }
+      .faq-answer {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="credits.html" id="btn-credits">📝 Crédits</a>
+
+  <header>
+    <h1>FAQ - Vaidx NumWorks</h1>
+  </header>
+
+  <main>
+    <section class="faq-section">
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-label">
+          Qu'est-ce que la calculatrice NumWorks ?
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-label">
+          <p>La NumWorks est une calculatrice graphique moderne, open-source, qui permet aussi de programmer en Python directement sur l'appareil.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-label">
+          Comment installer des apps personnalisées ?
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-label">
+          <p>Tu peux installer des .nwa via notre section Téléchargements, en utilisant le logiciel officiel NumWorks ou des méthodes avancées par terminal.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-label">
+          Est-ce que NumWorks supporte Python ?
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-label">
+          <p>Oui, un interpréteur Python intégré permet de coder, tester et exécuter des scripts éducatifs, scientifiques ou créatifs.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq4" id="faq4-label">
+          Puis-je modifier le firmware ?
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq4" role="region" aria-labelledby="faq4-label">
+          <p>Absolument. Le firmware Epsilon est open-source. Tu peux le compiler, le modifier et flasher ta propre version facilement.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq5" id="faq5-label">
+          Comment utiliser le simulateur en ligne ?
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq5" role="region" aria-labelledby="faq5-label">
+          <p>Notre simulateur fonctionne dans ton navigateur, sans installation. Il reproduit fidèlement l'interface NumWorks.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq6" id="faq6-label">
+          Le site est-il adapté aux débutants ?
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq6" role="region" aria-labelledby="faq6-label">
+          <p>Oui, tout est pensé pour être clair, illustré, et progressif, avec des exemples concrets à chaque étape.</p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Vaidx • Passion NumWorks & Python • 🧠🐍
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.faq-question').forEach(b => {
+          b.setAttribute('aria-expanded', 'false');
+          b.classList.remove('active');
+          b.nextElementSibling.classList.remove('show');
+        });
+        if (!expanded) {
+          btn.setAttribute('aria-expanded', 'true');
+          btn.classList.add('active');
+          btn.nextElementSibling.classList.add('show');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
