@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crédits - Vaidx NumWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 15px 50px;
+    }
+    header {
+      text-align: center;
+      padding: 25px 15px;
+      background-color: #1b1b1b;
+      border-radius: 12px;
+      box-shadow: 0 0 14px #f9b800aa;
+      margin-bottom: 40px;
+      user-select: none;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      color: #f9b800;
+      text-shadow: 0 0 8px #f9b800bb;
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #1c1c1c;
+      padding: 35px 30px;
+      border-radius: 14px;
+      box-shadow: 0 0 20px #f9b80044;
+      user-select: none;
+    }
+    section {
+      margin-bottom: 35px;
+    }
+    section h2 {
+      color: #ffce3a;
+      font-size: 2rem;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #f9b800;
+      padding-bottom: 8px;
+    }
+    section p, section ul {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #e0e0e0;
+    }
+    section ul {
+      list-style-type: none;
+      margin-top: 12px;
+      padding-left: 0;
+    }
+    section ul li {
+      margin-bottom: 12px;
+      padding-left: 20px;
+      position: relative;
+      cursor: default;
+    }
+    section ul li::before {
+      content: "🔸";
+      position: absolute;
+      left: 0;
+      color: #f9b800;
+      font-size: 1.2rem;
+      top: 0;
+    }
+    a {
+      color: #f9b800;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 1rem;
+      color: #f9b800cc;
+      margin-top: auto;
+      user-select: none;
+    }
+    #btn-back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(90deg, #f9b800, #ffcf3d);
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px #f9b800aa;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      user-select: none;
+      z-index: 1000;
+      font-family: 'Segoe UI', sans-serif;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+    #btn-back:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px #f9b800ff;
+      filter: brightness(1.1);
+    }
+    @media (max-width: 768px) {
+      main {
+        padding: 25px 20px;
+      }
+      #btn-back {
+        top: 15px;
+        left: 15px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" id="btn-back" aria-label="Retour à l'accueil">⬅️ Retour</a>
+
+  <header>
+    <h1>Crédits & Remerciements</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Projets NumWorks & Epsilon</h2>
+      <p>Un grand merci à toute l'équipe NumWorks et aux contributeurs du firmware <strong>Epsilon</strong> qui ont rendu cette calculatrice accessible et open-source :</p>
+      <ul>
+        <li><strong>NumWorks</strong> - <a href="https://www.numworks.com/" target="_blank" rel="noopener noreferrer">Site officiel</a></li>
+        <li><strong>Epsilon Firmware</strong> - <a href="https://github.com/numworks/epsilon" target="_blank" rel="noopener noreferrer">GitHub Epsilon</a></li>
+        <li><strong>Contributeurs GitHub</strong> - Merci à tous ceux qui participent à l'amélioration continue</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Émulateurs & Logiciels Open Source</h2>
+      <p>Quelques outils essentiels utilisés ou référencés dans ce projet :</p>
+      <ul>
+        <li><strong>Nofrendo</strong> - Un émulateur NES open-source classique <br /><a href="https://sourceforge.net/projects/nofrendo/" target="_blank" rel="noopener noreferrer">https://sourceforge.net/projects/nofrendo/</a></li>
+        <li><strong>Python</strong> - Langage de programmation incontournable <br /><a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">https://www.python.org/</a></li>
+        <li><strong>Git & GitHub</strong> - Pour gestion de versions et collaboration</li>
+        <li><strong>VSCode</strong> - Éditeur de code performant <br /><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com/</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Ressources & Inspirations</h2>
+      <ul>
+        <li><a href="https://pysnmp.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">PySNMP</a> - Librairie Python pour SNMP</li>
+        <li><a href="https://socket.io/" target="_blank" rel="noopener noreferrer">Socket.IO</a> - Pour la communication temps réel web</li>
+        <li><a href="https://developer.mozilla.org/fr/" target="_blank" rel="noopener noreferrer">MDN Web Docs</a> - Documentation officielle pour HTML, CSS et JS</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Merci à Toi !</h2>
+      <p>Sans les passionnés, développeurs et curieux comme toi, ce projet ne serait rien. Continue à explorer, apprendre et partager.</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Vaidx • Merci à tous les contributeurs open source • 🐍 + 💻 + 🔧
+  </footer>
+</body>
+</html>

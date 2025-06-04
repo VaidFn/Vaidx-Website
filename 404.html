@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>404 - Page non trouvée | Vaidx NumWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 15px 50px;
+      text-align: center;
+      user-select: none;
+    }
+    h1 {
+      font-size: 6rem;
+      color: #f9b800;
+      text-shadow: 0 0 15px #f9b800cc;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.5rem;
+      color: #e0e0e0;
+      margin-bottom: 40px;
+      max-width: 400px;
+    }
+    a#btn-back {
+      background: linear-gradient(90deg, #f9b800, #ffcf3d);
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 30px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px #f9b800aa;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      user-select: none;
+    }
+    a#btn-back:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px #f9b800ff;
+      filter: brightness(1.1);
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 4.5rem;
+      }
+      p {
+        font-size: 1.2rem;
+        max-width: 90%;
+      }
+      a#btn-back {
+        font-size: 1rem;
+        padding: 10px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>404</h1>
+  <p>Oups ! La page que vous cherchez n'existe pas ou a été déplacée.</p>
+  <a href="index.html" id="btn-back" aria-label="Retour à l'accueil">⬅️ Retour à l'accueil</a>
+</body>
+</html>

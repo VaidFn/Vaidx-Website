@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Vaidx NumWorks - Présentation</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Redirection mobile -->
+  <script>
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.location.href = "mobile.html";
+    }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95)),
+        url('https://www.numworks.com/fr/home-f1b82a61.jpg') center/cover no-repeat fixed;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    main {
+      background-color: rgba(0, 0, 0, 0.9);
+      border: 2px solid #f9b800;
+      box-shadow: 0 0 30px #f9b80099;
+      border-radius: 25px;
+      padding: 50px 40px;
+      text-align: center;
+      max-width: 800px;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      color: #f9b800;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px #f9b80066;
+    }
+
+    .desc {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      margin-bottom: 35px;
+    }
+
+    .btn-entrer {
+      background: linear-gradient(90deg, #f9b800, #ffce3a);
+      color: #000;
+      padding: 16px 40px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 0 15px #f9b80088;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-entrer:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #f9b800cc;
+    }
+
+    .github-link {
+      margin-top: 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 0 10px #ffffff22;
+    }
+
+    .github-link:hover {
+      background: #f9b800;
+      transform: translateY(-2px);
+    }
+
+    .github-link svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .signature {
+      margin-top: 40px;
+      font-size: 1.1rem;
+      color: #fffbe7;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 35px 25px;
+      }
+      h2 {
+        font-size: 2.3rem;
+      }
+      .desc {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h2>Bienvenue sur Vaidx NumWorks</h2>
+    <div class="desc">
+      Ce site est dédié à l’univers de la calculatrice NumWorks : scripts, tutoriels, astuces et projets personnalisés.<br><br>
+      Que tu sois lycéen, prof ou passionné de tech, tu découvriras ici tout ce qu’il faut pour tirer le meilleur de ta NumWorks.
+    </div>
+    <a href="principal.html" class="btn-entrer">Entrer sur le site</a>
+    <br><br>
+    <a class="github-link" href="https://github.com/Vaidx0" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8a8.001 8.001 0 005.47 7.59c.4.07.55-.17.55-.38v-1.33C4.42 14.91 3.87 13.86 3.87 13.86c-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.5-1.07-1.77-.2-3.63-.89-3.63-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0 0 .67-.21 2.2.82A7.66 7.66 0 018 4.64c.68.003 1.37.092 2.01.27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.64 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8.001 8.001 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub Vaidx0
+    </a>
+    <div class="signature">© 2025 Vaidx</div>
+  </main>
+</body>
+</html>
