@@ -189,30 +189,18 @@
     }
 
     @keyframes loader1 {
-      0% {
-        transform: scale(0);
-      }
-      100% {
-        transform: scale(1);
-      }
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
     }
 
     @keyframes loader2 {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(20px);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(20px); }
     }
 
     @keyframes loader3 {
-      0% {
-        transform: scale(1);
-      }
-      100% {
-        transform: scale(0);
-      }
+      0% { transform: scale(1); }
+      100% { transform: scale(0); }
     }
 
     #tuto {
@@ -261,6 +249,43 @@
         padding: 20px;
       }
     }
+
+    /* Transition écran noir */
+    #transitionScreen {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      color: #f9b800;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #transitionScreen.show {
+      opacity: 1;
+      pointer-events: auto;
+      animation: fadeInBlack 1s forwards;
+    }
+
+    @keyframes fadeInBlack {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #transitionScreen p {
+      animation: pulseText 1.5s infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -275,15 +300,18 @@
   <section id="tuto" aria-label="Tutoriel pour obtenir un pseudo NumWorks">
     <h2>Comment obtenir un pseudo NumWorks valide ?</h2>
     <ol>
-      <li>Crée un compte sur <a href="https://my.numworks.com/" target="_blank" rel="noopener noreferrer" style="color:#f9b800; text-decoration: underline;">my.numworks.com</a> si tu n'en as pas déjà un.</li>
-      <li>Connecte-toi sur le site et va dans la section <strong>Python</strong>.</li>
-      <li>Upload au moins un script Python en cliquant sur <em>"Uploader un script"</em>.</li>
-      <li>Ensuite, va dans <strong>Mes scripts</strong>, sélectionne un script, et regarde l'URL dans la barre d'adresse.</li>
-      <li>Dans cette URL, tu verras ton pseudo affiché (exemple : <code>https://my.numworks.com/python/*votre pseudo*</code>).</li>
-      <li>Utilise ce pseudo pour la vérification ici.</li>
+      <li>Crée un compte sur <a href="https://my.numworks.com/" target="_blank" rel="noopener noreferrer" style="color:#f9b800; text-decoration: underline;">my.numworks.com</a>.</li>
+      <li>Connecte-toi, va dans <strong>Python</strong>.</li>
+      <li>Upload un script, puis regarde l’URL dans <strong>Mes scripts</strong>.</li>
+      <li>Utilise le pseudo dans l’URL ici pour le vérifier.</li>
     </ol>
-    <p>Si une erreur survient, cela peut être dû à un pare-feu ou à des problèmes de connexion.</p>
+    <p>Une erreur peut venir d’un pare-feu ou problème réseau.</p>
   </section>
+
+  <!-- Animation de transition -->
+  <div id="transitionScreen">
+    <p>Chargement...</p>
+  </div>
 
   <script>
     window.addEventListener('beforeunload', function (e) {
@@ -322,15 +350,17 @@
           sessionStorage.setItem('pseudoValide', 'true');
           sessionStorage.setItem('pseudo', pseudo);
 
+          // Affichage écran de transition
+          document.getElementById('transitionScreen').classList.add('show');
           await new Promise(r => setTimeout(r, 2000));
           window.location.href = 'menu.html';
         } else {
-          resultat.textContent = `❌ Le pseudo "${pseudo}" n'existe pas (code ${res.status})`;
+          resultat.textContent = `❌ Le pseudo "${pseudo}" n'existe pas`;
           resultat.style.color = "#ff5555";
           resultat.classList.add('showResult');
         }
       } catch (e) {
-        resultat.textContent = `❌ Erreur de connexion : ${e.message}`;
+        resultat.textContent = `❌ Erreur de connexion`;
         resultat.style.color = "#ff5555";
         resultat.classList.add('showResult');
       }
