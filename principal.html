@@ -2,10 +2,21 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vaidx NumWorks</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-21WRHSBWHK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-21WRHSBWHK');
+  </script>
+
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
   <style>
     :root {
       --jaune: #f9b800;
@@ -22,13 +33,14 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: var(--noir);
       color: var(--blanc);
       line-height: 1.6;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     header {
@@ -37,6 +49,7 @@
       background: var(--gris);
       box-shadow: 0 3px 10px #0008;
       position: relative;
+      user-select: none;
     }
 
     .top-buttons {
@@ -46,7 +59,6 @@
       display: flex;
       gap: 15px;
       align-items: center;
-      animation: fadeIn 1s ease-in-out;
     }
 
     .social-links {
@@ -66,8 +78,7 @@
       transform: scale(1.2);
     }
 
-    #theme-toggle,
-    #logout-btn {
+    #theme-toggle {
       background: linear-gradient(90deg, var(--jaune), var(--jaune-clair));
       color: #000;
       padding: 8px 16px;
@@ -78,24 +89,11 @@
       cursor: pointer;
       box-shadow: 0 0 10px var(--jaune);
       transition: all 0.3s ease;
-      animation: bounceIn 0.6s ease;
     }
 
-    #theme-toggle:hover,
-    #logout-btn:hover {
+    #theme-toggle:hover {
       transform: scale(1.08);
       box-shadow: 0 0 20px var(--jaune);
-    }
-
-    #logout-btn {
-      background: #f94144;
-      color: #fff;
-      box-shadow: 0 0 10px #f94144aa;
-    }
-
-    #logout-btn:hover {
-      background: #ff6b6b;
-      box-shadow: 0 0 18px #ff6b6baa;
     }
 
     header h1 {
@@ -118,7 +116,7 @@
       text-decoration: none;
       z-index: 999;
       transition: all 0.3s ease;
-      animation: fadeInDown 0.8s ease;
+      user-select: none;
     }
 
     #btn-credits:hover {
@@ -138,7 +136,6 @@
 
     .logo-container {
       text-align: center;
-      animation: zoomIn 0.8s ease;
     }
 
     .logo-container img {
@@ -147,6 +144,7 @@
       filter: drop-shadow(0 0 12px var(--jaune));
       transition: transform 0.3s ease, filter 0.3s ease;
       cursor: pointer;
+      user-select: none;
     }
 
     .logo-container img:hover {
@@ -160,7 +158,6 @@
       border-radius: 18px;
       box-shadow: 0 0 20px #f9b80033;
       transition: box-shadow 0.3s ease;
-      animation: fadeInUp 0.7s ease;
     }
 
     section:hover {
@@ -207,7 +204,7 @@
       box-shadow: 0 0 16px #f9b80099;
       transition: all 0.3s ease;
       text-decoration: none;
-      animation: fadeIn 1s ease;
+      user-select: none;
     }
 
     .btn:hover {
@@ -227,6 +224,7 @@
       max-width: 400px;
       border-radius: 10px;
       margin-bottom: 15px;
+      user-select: none;
     }
 
     footer {
@@ -236,6 +234,7 @@
       font-weight: bold;
       color: var(--jaune);
       border-top: 1px solid #333;
+      user-select: none;
     }
 
     @media (max-width: 600px) {
@@ -254,32 +253,43 @@
       }
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+
+    /* Animation pour déconnexion */
+    #btn-logout {
+      cursor: pointer;
+      background: linear-gradient(90deg, var(--jaune), var(--jaune-clair));
+      color: #000;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 0 10px var(--jaune);
+      transition: all 0.3s ease;
+      user-select: none;
+      margin-left: 15px;
+    }
+    #btn-logout:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px var(--jaune);
     }
 
-    @keyframes zoomIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    /* Animation de fadeout */
+    .fade-out {
+      animation: fadeOutAnim 0.5s forwards;
     }
 
-    @keyframes bounceIn {
-      0% { transform: scale(0.8); }
-      60% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    @keyframes fadeOutAnim {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
     }
 
-    @keyframes fadeInUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeInDown {
-      from { transform: translateY(-30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
   </style>
 </head>
 <body>
@@ -288,52 +298,95 @@
   <header>
     <div class="top-buttons">
       <div class="social-links">
-        <a href="https://www.youtube.com/@NumWorks" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.numworks.com/fr/" target="_blank"><i class="fas fa-globe"></i></a>
-        <a href="https://twitter.com/NumWorks" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://github.com/numworks" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.youtube.com/@NumWorks" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.numworks.com/fr/" target="_blank" aria-label="Site Web"><i class="fas fa-globe"></i></a>
+        <a href="https://twitter.com/NumWorks" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://discord.gg/numworks" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
       </div>
-      <button id="theme-toggle">Sombre</button>
-      <button id="logout-btn" onclick="alert('Déconnexion effectuée !');">Se déconnecter</button>
+      <button id="theme-toggle" aria-label="Changer le thème">Clair / Sombre</button>
+      <button id="btn-logout" aria-label="Se déconnecter">Déconnexion</button>
     </div>
     <h1>Vaidx NumWorks</h1>
   </header>
 
-  <!-- Ton contenu principal reste inchangé -->
-  <!-- ... -->
+  <main>
+    <div class="logo-container">
+      <img src="img/numworks.webp" alt="Calculatrice NumWorks" draggable="false" />
+    </div>
+
+    <section>
+      <h2>Présentation</h2>
+      <p>Vaidx NumWorks est un site dédié à la calculatrice NumWorks, pour tout savoir sur cette merveille technologique.</p>
+      <p>Sur ce site, tu trouveras :</p>
+      <ul>
+        <li>Des actualités fraîches</li>
+        <li>Des tutos pour exploiter ta calculatrice</li>
+        <li>Des projets open-source</li>
+        <li>Des vidéos et ressources utiles</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Projets en cours</h2>
+      <div class="project">
+        <video controls poster="img/project1-poster.webp" preload="metadata" muted playsinline>
+          <source src="vid/project1.mp4" type="video/mp4" />
+          Ton navigateur ne supporte pas la vidéo.
+        </video>
+        <p>Exploration de l'API NumWorks pour créer des extensions Python.</p>
+      </div>
+      <a href="projects.html" class="btn">Voir tous les projets</a>
+    </section>
+
+    <section>
+      <h2>Réseaux sociaux</h2>
+      <p>Retrouve-nous sur :</p>
+      <ul>
+        <li><a href="https://www.youtube.com/@NumWorks" target="_blank" rel="noopener" class="btn">YouTube</a></li>
+        <li><a href="https://twitter.com/NumWorks" target="_blank" rel="noopener" class="btn">Twitter</a></li>
+        <li><a href="https://discord.gg/numworks" target="_blank" rel="noopener" class="btn">Discord</a></li>
+      </ul>
+    </section>
+  </main>
 
   <footer>
-    © 2025 Vaidx • Créé avec passion pour les fans de NumWorks 🐍
+    &copy; 2025 Vaidx NumWorks - Tous droits réservés
   </footer>
 
   <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const root = document.documentElement;
+    // Gestion du thème sombre / clair avec localStorage
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
 
     function setTheme(theme) {
       if (theme === 'light') {
-        root.style.setProperty('--noir', '#f0f0f0');
-        root.style.setProperty('--gris', '#ffffff');
-        root.style.setProperty('--blanc', '#111');
-        toggleBtn.textContent = 'Clair';
+        body.style.background = '#eaeaea';
+        body.style.color = '#0d0d0d';
+        themeToggle.textContent = 'Sombre';
       } else {
-        root.style.setProperty('--noir', '#0d0d0d');
-        root.style.setProperty('--gris', '#1c1c1c');
-        root.style.setProperty('--blanc', '#eaeaea');
-        toggleBtn.textContent = 'Sombre';
+        body.style.background = 'var(--noir)';
+        body.style.color = 'var(--blanc)';
+        themeToggle.textContent = 'Clair';
       }
       localStorage.setItem('theme', theme);
     }
 
-    toggleBtn.addEventListener('click', () => {
-      const current = localStorage.getItem('theme') || 'dark';
-      const newTheme = current === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme);
+    // Initialisation au chargement
+    let savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      savedTheme = savedTheme === 'dark' ? 'light' : 'dark';
+      setTheme(savedTheme);
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      setTheme(savedTheme);
+    // Bouton déconnexion avec animation et redirection
+    const btnLogout = document.getElementById('btn-logout');
+    btnLogout.addEventListener('click', () => {
+      btnLogout.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 500);
     });
   </script>
 </body>
