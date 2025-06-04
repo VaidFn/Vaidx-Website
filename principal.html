@@ -2,23 +2,19 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vaidx NumWorks</title>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-21WRHSBWHK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-21WRHSBWHK');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-21WRHSBWHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-21WRHSBWHK');
+</script>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-  />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     :root {
       --jaune: #f9b800;
@@ -26,72 +22,22 @@
       --noir: #0d0d0d;
       --gris: #1c1c1c;
       --blanc: #eaeaea;
-      --transition-speed: 0.35s;
-    }
-
-    /* Animation pulse pour attirer l'attention */
-    @keyframes pulse {
-      0%, 100% {
-        box-shadow: 0 0 10px var(--jaune);
-        transform: scale(1);
-      }
-      50% {
-        box-shadow: 0 0 25px var(--jaune-clair);
-        transform: scale(1.05);
-      }
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      transition: background-color var(--transition-speed), color var(--transition-speed);
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: var(--noir);
       color: var(--blanc);
       line-height: 1.6;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      transition: background-color var(--transition-speed), color var(--transition-speed);
-    }
-
-    /* Boutons fixes en haut à gauche */
-    #btn-credits,
-    #btn-logout {
-      position: fixed;
-      top: 20px;
-      background: linear-gradient(90deg, var(--jaune), var(--jaune-clair));
-      color: #000;
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-weight: bold;
-      box-shadow: 0 0 16px var(--jaune);
-      text-decoration: none;
-      z-index: 999;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    #btn-credits {
-      left: 20px;
-      /* À droite du bouton logout */
-      margin-left: 110px;
-    }
-
-    #btn-logout {
-      left: 20px;
-      animation: pulse 3s ease-in-out infinite;
-    }
-
-    #btn-credits:hover,
-    #btn-logout:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 30px var(--jaune-clair);
     }
 
     header {
@@ -100,8 +46,6 @@
       background: var(--gris);
       box-shadow: 0 3px 10px #0008;
       position: relative;
-      transition: background-color var(--transition-speed);
-      z-index: 10;
     }
 
     .top-buttons {
@@ -133,31 +77,46 @@
     #theme-toggle {
       background: linear-gradient(90deg, var(--jaune), var(--jaune-clair));
       color: #000;
-      padding: 10px 20px;
+      padding: 8px 16px;
       border: none;
-      border-radius: 25px;
+      border-radius: 20px;
       font-weight: bold;
       font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 0 12px var(--jaune);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-      user-select: none;
-      filter: drop-shadow(0 0 2px var(--jaune));
+      box-shadow: 0 0 10px var(--jaune);
+      transition: all 0.3s ease;
     }
 
     #theme-toggle:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 30px var(--jaune-clair);
-      background: linear-gradient(90deg, var(--jaune-clair), var(--jaune));
+      transform: scale(1.08);
+      box-shadow: 0 0 20px var(--jaune);
     }
 
     header h1 {
       font-size: 3rem;
       color: var(--jaune);
-      text-shadow: 0 0 12px var(--jaune);
-      letter-spacing: 1.5px;
-      transition: color var(--transition-speed), text-shadow var(--transition-speed);
-      user-select: none;
+      text-shadow: 0 0 10px var(--jaune);
+      letter-spacing: 1px;
+    }
+
+    #btn-credits {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(90deg, var(--jaune), var(--jaune-clair));
+      color: #000;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: bold;
+      box-shadow: 0 0 16px var(--jaune);
+      text-decoration: none;
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+
+    #btn-credits:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px var(--jaune);
     }
 
     main {
@@ -178,14 +137,13 @@
       width: 250px;
       border-radius: 16px;
       filter: drop-shadow(0 0 12px var(--jaune));
-      transition: transform 0.4s ease, filter 0.4s ease;
+      transition: transform 0.3s ease, filter 0.3s ease;
       cursor: pointer;
-      user-select: none;
     }
 
     .logo-container img:hover {
       transform: scale(1.1);
-      filter: drop-shadow(0 0 20px var(--jaune-clair));
+      filter: drop-shadow(0 0 20px var(--jaune));
     }
 
     section {
@@ -193,7 +151,7 @@
       padding: 30px;
       border-radius: 18px;
       box-shadow: 0 0 20px #f9b80033;
-      transition: box-shadow 0.3s ease, background-color var(--transition-speed);
+      transition: box-shadow 0.3s ease;
     }
 
     section:hover {
@@ -204,14 +162,11 @@
       font-size: 2rem;
       color: var(--jaune);
       margin-bottom: 20px;
-      user-select: none;
-      transition: color var(--transition-speed);
     }
 
     section p,
     section li {
       font-size: 1.1rem;
-      user-select: text;
     }
 
     section ul {
@@ -241,16 +196,13 @@
       font-size: 1rem;
       margin: 10px 8px 0 0;
       box-shadow: 0 0 16px #f9b80099;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      transition: all 0.3s ease;
       text-decoration: none;
-      user-select: none;
-      cursor: pointer;
     }
 
     .btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 28px #f9b800;
-      background: linear-gradient(90deg, var(--jaune-clair), var(--jaune));
     }
 
     .project {
@@ -265,14 +217,6 @@
       max-width: 400px;
       border-radius: 10px;
       margin-bottom: 15px;
-      user-select: none;
-      box-shadow: 0 0 15px var(--jaune-clair);
-      transition: box-shadow 0.3s ease;
-    }
-
-    .project video:hover {
-      box-shadow: 0 0 30px var(--jaune);
-      transform: scale(1.02);
     }
 
     footer {
@@ -282,11 +226,8 @@
       font-weight: bold;
       color: var(--jaune);
       border-top: 1px solid #333;
-      user-select: none;
-      transition: color var(--transition-speed);
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       header h1 {
         font-size: 2.2rem;
@@ -301,122 +242,120 @@
         flex-direction: row;
         gap: 10px;
       }
-      #btn-credits {
-        margin-left: 90px;
-        padding: 8px 18px;
-        font-size: 0.9rem;
-      }
-      #btn-logout {
-        padding: 8px 18px;
-        font-size: 0.9rem;
-      }
     }
   </style>
 </head>
 <body>
-  <a href="logout.html" id="btn-logout" aria-label="Se déconnecter">🔒 Se déconnecter</a>
-  <a href="credits.html" id="btn-credits" aria-label="Crédits">Crédits</a>
+  <a href="credits.html" id="btn-credits">📝 Crédits</a>
 
   <header>
+    <div class="top-buttons">
+      <div class="social-links">
+        <a href="https://www.youtube.com/@NumWorks" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.numworks.com/fr/" target="_blank" aria-label="Site Web"><i class="fas fa-globe"></i></a>
+        <a href="https://twitter.com/NumWorks" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://github.com/numworks" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+      <button id="theme-toggle">Thème ==> Sombre</button>
+    </div>
     <h1>Vaidx NumWorks</h1>
-    <button id="theme-toggle" aria-label="Changer thème">Sombre</button>
   </header>
 
   <main>
     <div class="logo-container">
-      <img src="images/numworks-logo.png" alt="Logo NumWorks" />
+      <img src="https://cdn.numworks.com/2e2d7f5f.png" alt="Logo NumWorks" />
     </div>
 
     <section>
-      <h2>Bienvenue sur Vaidx NumWorks</h2>
-      <p>
-        Ce site présente des projets, tutoriels, et ressources autour de la calculatrice
-        NumWorks, incluant des scripts Python, JavaScript, et plus.
-      </p>
-    </section>
-
-    <section>
-      <h2>Mes projets</h2>
+      <h2>📌 Qu'est-ce que NumWorks ?</h2>
+      <p>NumWorks est une calculatrice graphique open-source, moderne et personnalisable, compatible Python. Elle permet d'apprendre à programmer tout en rendant les maths plus accessibles, claires et interactives.</p>
       <div class="project">
-        <video src="videos/demo1.mp4" autoplay muted loop playsinline></video>
-        <a href="project1.html" class="btn">Découvrir le projet 1</a>
-      </div>
-      <div class="project">
-        <video src="videos/demo2.mp4" autoplay muted loop playsinline></video>
-        <a href="project2.html" class="btn">Découvrir le projet 2</a>
+        <video autoplay muted playsinline>
+          <source src="https://www.numworks.com/shared/pages/design/open-59e35f12.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la vidéo HTML5.
+        </video>
+        <p>La calculatrice NumWorks est conçue pour les étudiants et les passionnés de technologie.</p>
       </div>
     </section>
 
     <section>
-      <h2>Réseaux sociaux</h2>
-      <div class="social-links" aria-label="Liens réseaux sociaux">
-        <a href="https://discord.gg/vaidx" target="_blank" rel="noopener" aria-label="Discord">
-          <i class="fab fa-discord"></i>
-        </a>
-        <a href="https://twitter.com/vaidx" target="_blank" rel="noopener" aria-label="Twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://github.com/vaidx" target="_blank" rel="noopener" aria-label="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
+      <h2>🛠️ Fonctions du site</h2>
+      <ul>
+        <li>Scripts Python pour maths, jeux et physique</li>
+        <li>Modifications avancées du firmware (Epsilon)</li>
+        <li>Simulateurs, mini-jeux, interfaces natives</li>
+        <li>Connectivité USB, WSL2, Git & Android</li>
+        <li>Guides complets pour Windows, Linux, macOS</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🚀 Accès rapide</h2>
+      <a class="btn" href="telechargements.html">📥 Apps personnalisées (.nwa)</a>
+      <a class="btn" href="simulateur.html">🖥️ Simulateur NumWorks</a>
+      <a class="btn" href="python.html">🐍 Scripts Python</a>
+      <a class="btn" href="usb.html">🔌 Connexion USB</a>
+      <a class="btn" href="customapp.html">🛠️ App native C</a>
+      <a class="btn" href="raspberry.html">🍓 Raspberry & Wifi</a>
+      <a class="btn" href="comparaison.html">📊 Comparaison</a>
+      <a class="btn" href="myapp.html">🧠 Memory Stressor</a>
+      <a class="btn" href="faq.html">🤔 FAQ</a>
+    </section>
+
+    <section>
+      <h2>🌱 À venir</h2>
+      <ul>
+        <li>Portail communautaire avec partage d'apps</li>
+        <li>Tutoriels vidéo avec chapitrage interactif</li>
+        <li>Transfert direct via WebUSB</li>
+        <li>API simplifiée pour coder en C++</li>
+        <li>Personnalisation des menus et icônes</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📚 Ressources supplémentaires</h2>
+      <div class="project">
+        <p>Découvrez comment personnaliser votre calculatrice avec nos tutoriels détaillés.</p>
+        <a class="btn" href="https://www.numworks.com/fr/manuel/" target="_blank">Voir les ressources</a>
+        <a class="btn" href="https://my.numworks.com/apps" target="_blank">Applications NumWorks</a>
       </div>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Vaidx - Tous droits réservés
+    © 2025 Vaidx • Créé avec passion pour les fans de NumWorks 🐍
   </footer>
 
   <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+    const toggleBtn = document.getElementById('theme-toggle');
+    const root = document.documentElement;
 
-    function updateThemeButton() {
-      themeToggle.textContent = body.classList.contains('light-theme') ? 'Clair' : 'Sombre';
-    }
-
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('light-theme');
-      updateThemeButton();
-    });
-
-    // Définition des couleurs du thème clair
-    const lightTheme = {
-      '--noir': '#eaeaea',
-      '--gris': '#d1d1d1',
-      '--blanc': '#0d0d0d',
-      '--jaune': '#d7a700',
-      '--jaune-clair': '#f1c232',
-      'background-color': '#f9f9f9',
-      'color': '#222',
-    };
-
-    // Appliquer le thème clair via variables CSS
-    function applyLightTheme() {
-      for (const [key, value] of Object.entries(lightTheme)) {
-        document.documentElement.style.setProperty(key, value);
-      }
-    }
-
-    // Rétablir le thème sombre (valeurs par défaut)
-    function applyDarkTheme() {
-      document.documentElement.style.removeProperty('--noir');
-      document.documentElement.style.removeProperty('--gris');
-      document.documentElement.style.removeProperty('--blanc');
-      document.documentElement.style.removeProperty('--jaune');
-      document.documentElement.style.removeProperty('--jaune-clair');
-    }
-
-    themeToggle.addEventListener('click', () => {
-      if (body.classList.contains('light-theme')) {
-        applyLightTheme();
+    function setTheme(theme) {
+      if (theme === 'light') {
+        root.style.setProperty('--noir', '#f0f0f0');
+        root.style.setProperty('--gris', '#ffffff');
+        root.style.setProperty('--blanc', '#111');
+        toggleBtn.textContent = 'Thème : Clair';
       } else {
-        applyDarkTheme();
+        root.style.setProperty('--noir', '#0d0d0d');
+        root.style.setProperty('--gris', '#1c1c1c');
+        root.style.setProperty('--blanc', '#eaeaea');
+        toggleBtn.textContent = 'Thème : Sombre';
       }
+      localStorage.setItem('theme', theme);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const current = localStorage.getItem('theme') || 'dark';
+      const newTheme = current === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
     });
 
-    // Initialisation bouton au chargement
-    updateThemeButton();
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      setTheme(savedTheme);
+    });
   </script>
 </body>
 </html>
