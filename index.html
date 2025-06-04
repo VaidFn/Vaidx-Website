@@ -5,13 +5,262 @@
   <title>Vérificateur NumWorks</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <script>
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       window.location.href = "mobile.html";
     }
   </script>
+
   <style>
-    /* Vos styles CSS ici */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)),
+        url('https://www.numworks.com/fr/home-f1b82a61.jpg') center/cover no-repeat fixed;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 30px;
+      flex-direction: column;
+      overflow: auto;
+    }
+
+    main {
+      background-color: rgba(0, 0, 0, 0.9);
+      border: 2px solid #f9b800;
+      box-shadow: 0 0 30px #f9b80099;
+      border-radius: 25px;
+      padding: 50px 40px;
+      text-align: center;
+      max-width: 700px;
+      animation: fadeInScale 1.5s ease-out forwards;
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #f9b800;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px #f9b80066;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        text-shadow: 0 0 10px #f9b800aa, 0 0 20px #f9b800bb, 0 0 30px #ffce3acc;
+      }
+      50% {
+        text-shadow: 0 0 20px #f9b800ff, 0 0 40px #ffce3aff, 0 0 60px #f9b800ff;
+      }
+    }
+
+    input {
+      padding: 15px 20px;
+      width: 80%;
+      max-width: 400px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      border: 2px solid #f9b800;
+      background-color: #111;
+      color: #f9b800;
+      outline: none;
+      margin-bottom: 20px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input:focus {
+      box-shadow: 0 0 10px #f9b800cc;
+    }
+
+    button {
+      padding: 14px 35px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #f9b800, #ffce3a);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #f9b80088;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px #f9b800cc;
+    }
+
+    button::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: radial-gradient(circle, rgba(249,184,0,0.4) 10%, transparent 60%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.6s ease;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    button:active::before {
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform 0s;
+    }
+
+    #resultat {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #fffbe7;
+      min-height: 1.5em;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+
+    .showResult {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .loader {
+      display: inline-block;
+      position: relative;
+      width: 60px;
+      height: 15px;
+    }
+
+    .loader span {
+      position: absolute;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #f9b800;
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+    .loader span:nth-child(1) {
+      left: 0;
+      animation: loader1 0.6s infinite;
+    }
+
+    .loader span:nth-child(2) {
+      left: 20px;
+      animation: loader2 0.6s infinite;
+    }
+
+    .loader span:nth-child(3) {
+      left: 40px;
+      animation: loader3 0.6s infinite;
+    }
+
+    @keyframes loader1 {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes loader2 {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(20px);
+      }
+    }
+
+    @keyframes loader3 {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0);
+      }
+    }
+
+    #tuto {
+      background: rgba(249, 184, 0, 0.1);
+      border: 2px solid #f9b800;
+      color: #fff9d4;
+      border-radius: 20px;
+      padding: 25px 30px;
+      max-width: 700px;
+      font-size: 1.1rem;
+      text-align: left;
+      box-shadow: 0 0 25px #f9b80099;
+      line-height: 1.6;
+      user-select: none;
+      animation: fadeInScale 1.8s ease forwards;
+    }
+
+    #tuto h2 {
+      color: #f9b800;
+      margin-bottom: 15px;
+      font-weight: 900;
+      font-size: 1.6rem;
+      text-shadow: 0 0 12px #f9b800cc;
+    }
+
+    #tuto ol {
+      margin-left: 20px;
+    }
+
+    #tuto ol li {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 35px 25px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      input {
+        width: 90%;
+      }
+      #tuto {
+        font-size: 1rem;
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body>
