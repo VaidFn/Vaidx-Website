@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vaidx NumWorks</title>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-21WRHSBWHK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-21WRHSBWHK');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-21WRHSBWHK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-21WRHSBWHK');
+  </script>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -38,6 +37,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      transition: background 0.5s ease, color 0.5s ease;
     }
 
     header {
@@ -46,6 +46,12 @@
       background: var(--gris);
       box-shadow: 0 3px 10px #0008;
       position: relative;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .top-buttons {
@@ -145,6 +151,12 @@
       display: flex;
       flex-direction: column;
       gap: 40px;
+      animation: slideUp 1s ease-in-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     .logo-container {
@@ -169,11 +181,12 @@
       padding: 30px;
       border-radius: 18px;
       box-shadow: 0 0 20px #f9b80033;
-      transition: box-shadow 0.3s ease;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
 
     section:hover {
       box-shadow: 0 0 30px #f9b80077;
+      transform: translateY(-5px);
     }
 
     section h2 {
@@ -244,6 +257,7 @@
       font-weight: bold;
       color: var(--jaune);
       border-top: 1px solid #333;
+      animation: fadeIn 1s ease-in-out;
     }
 
     @media (max-width: 600px) {
@@ -259,6 +273,24 @@
       .social-links {
         flex-direction: row;
         gap: 10px;
+      }
+    }
+
+    .darken {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      z-index: 1000;
+      pointer-events: none;
+      animation: fadeToBlack 2s ease-in-out forwards;
+    }
+
+    @keyframes fadeToBlack {
+      to {
+        background: rgba(0, 0, 0, 0.8);
       }
     }
   </style>
@@ -349,6 +381,7 @@
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const root = document.documentElement;
+    const deconnexionBtn = document.getElementById('btn-deconnexion');
 
     function setTheme(theme) {
       if (theme === 'light') {
@@ -376,10 +409,14 @@
       setTheme(savedTheme);
     });
 
-    const deconnexionBtn = document.getElementById('btn-deconnexion');
     deconnexionBtn.addEventListener('click', () => {
-      // Add your logout logic here
-      alert('Déconnexion');
+      const darkenDiv = document.createElement('div');
+      darkenDiv.className = 'darken';
+      document.body.appendChild(darkenDiv);
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
     });
   </script>
 </body>
