@@ -2,16 +2,10 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Vérificateur NumWorks</title>
+  <title>Vérificateur NumWorks avec Blocage</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Vérifie instantanément si un pseudo NumWorks existe et accède au menu custom Vaidx.">
-
-  <script>
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      window.location.href = "mobile.html";
-    }
-  </script>
+  <meta name="description" content="Vérifie instantanément si un pseudo NumWorks existe et gère un blocage après 3 erreurs.">
 
   <style>
     * {
@@ -109,9 +103,16 @@
       overflow: hidden;
     }
 
-    button:hover {
+    button:hover:not(:disabled) {
       transform: scale(1.08);
       box-shadow: 0 0 25px #f9b800cc;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      box-shadow: none;
+      transform: none;
     }
 
     button::before {
@@ -128,7 +129,7 @@
       pointer-events: none;
     }
 
-    button:active::before {
+    button:active::before:not(:disabled) {
       transform: translate(-50%, -50%) scale(1);
       transition: transform 0s;
     }
@@ -138,23 +139,8 @@
       font-size: 1.2rem;
       color: #fffbe7;
       min-height: 1.5em;
-      opacity: 0;
-      animation-fill-mode: forwards;
-    }
-
-    .showResult {
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      white-space: pre-line;
+      opacity: 1;
     }
 
     .loader {
@@ -235,6 +221,11 @@
       margin-bottom: 10px;
     }
 
+    #tuto a {
+      color: #f9b800;
+      text-decoration: underline;
+    }
+
     @media (max-width: 768px) {
       main {
         padding: 35px 25px;
@@ -250,123 +241,131 @@
         padding: 20px;
       }
     }
-
-    /* Transition écran noir */
-    #transitionScreen {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.95);
-      color: #f9b800;
-      font-size: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 1s ease;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    #transitionScreen.show {
-      opacity: 1;
-      pointer-events: auto;
-      animation: fadeInBlack 1s forwards;
-    }
-
-    @keyframes fadeInBlack {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    #transitionScreen p {
-      animation: pulseText 1.5s infinite;
-    }
-
-    @keyframes pulseText {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
   </style>
 </head>
 <body>
   <main>
     <h1>🔍 Vérifie ton pseudo NumWorks</h1>
-    <input type="text" id="pseudo" placeholder="Entre ton pseudo NumWorks" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    <input
+      type="text"
+      id="pseudo"
+      placeholder="Entre ton pseudo NumWorks"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    />
     <br />
-    <button onclick="verifier()">Vérifier</button>
+    <button onclick="verifier()" id="verifierBtn">Vérifier</button>
     <p id="resultat"></p>
   </main>
 
   <section id="tuto" aria-label="Tutoriel pour obtenir un pseudo NumWorks">
     <h2>Comment obtenir un pseudo NumWorks valide ?</h2>
     <ol>
-      <li>Crée un compte sur <a href="https://my.numworks.com/" target="_blank" rel="noopener noreferrer" style="color:#f9b800; text-decoration: underline;">my.numworks.com</a>.</li>
+      <li>
+        Crée un compte sur
+        <a href="https://my.numworks.com/" target="_blank" rel="noopener noreferrer"
+          >my.numworks.com</a
+        >.
+      </li>
       <li>Connecte-toi, va dans <strong>Python</strong>.</li>
       <li>Upload un script, puis regarde l’URL dans <strong>Mes scripts</strong>.</li>
       <li>https://my.numworks.com/python/<strong>*votre pseudo*</strong></li>
       <li>Utilise le pseudo dans l’URL ici pour le vérifier.</li>
     </ol>
-    <p>Une Erreur peut venir d’un pare-feu ou problème réseau. 🌐💻</p>
+    <p>Une erreur peut venir d’un pare-feu ou problème réseau. 🌐💻</p>
   </section>
 
-  <!-- Animation de transition -->
-  <div id="transitionScreen">
-    <p>Chargement...</p>
-  </div>
-
   <script>
-    window.addEventListener('beforeunload', function (e) {
-      if (!sessionStorage.getItem('pseudoValide')) {
-        e.preventDefault();
-        e.returnValue = '';
+    const MAX_ESSAIS = 3;
+    const BLOCAGE_MINUTES = 10;
+
+    function estBloque() {
+      const blocage = localStorage.getItem("blocageTimestamp");
+      if (!blocage) return false;
+      const maintenant = Date.now();
+      return maintenant < parseInt(blocage);
+    }
+
+    function miseAJourEtat() {
+      const btn = document.getElementById("verifierBtn");
+      const resultat = document.getElementById("resultat");
+      if (estBloque()) {
+        const restant =
+          parseInt(localStorage.getItem("blocageTimestamp")) - Date.now();
+        const minutes = Math.floor(restant / 60000);
+        const secondes = Math.floor((restant % 60000) / 1000);
+        resultat.textContent = `🚫 Tu es bloqué pendant encore ${minutes} min ${secondes} sec.`;
+        resultat.style.color = "darkred";
+        btn.disabled = true;
+        return true;
       }
-    });
+      btn.disabled = false;
+      return false;
+    }
 
     async function verifier() {
-      const pseudo = document.getElementById('pseudo').value.trim();
-      const resultat = document.getElementById('resultat');
-      resultat.classList.remove('showResult');
+      if (miseAJourEtat()) return;
+
+      const pseudo = document.getElementById("pseudo").value.trim();
+      const resultat = document.getElementById("resultat");
+      const btn = document.getElementById("verifierBtn");
+      let essais = parseInt(localStorage.getItem("essaisRestants")) || MAX_ESSAIS;
 
       if (!pseudo) {
         resultat.textContent = "⛔ Entrez un pseudo.";
-        resultat.style.color = "#ff5555";
-        resultat.classList.add('showResult');
+        resultat.style.color = "red";
         return;
       }
 
-      resultat.innerHTML = `<span class="loader"><span></span><span></span><span></span></span> Vérification en cours...`;
-      resultat.style.color = "#f9b800";
-      resultat.classList.add('showResult');
+      // Affichage loader animé
+      resultat.innerHTML = `<span class="loader"><span></span><span></span><span></span></span> Vérification...`;
+      resultat.style.color = "orange";
 
       const url = `https://my.numworks.com/python/${pseudo}`;
-      const proxy = "https://corsproxy.io/?";
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
 
       try {
-        const res = await fetch(proxy + encodeURIComponent(url), { cache: "no-store" });
-        if (res.status === 200) {
-          resultat.textContent = `✅ Le pseudo "${pseudo}" existe sur NumWorks !`;
-          resultat.style.color = "#4CAF50";
-          resultat.classList.add('showResult');
+        const res = await fetch(proxyUrl);
+        if (!res.ok) throw new Error("Erreur proxy");
 
-          sessionStorage.setItem('pseudoValide', 'true');
-          sessionStorage.setItem('pseudo', pseudo);
+        const data = await res.json();
 
-          // Affichage écran de transition
-          document.getElementById('transitionScreen').classList.add('show');
-          await new Promise(r => setTimeout(r, 2000));
-          window.location.href = 'menu.html';
+        if (
+          data.contents.includes("404") ||
+          data.contents.includes("not found") ||
+          data.contents.includes("Oops")
+        ) {
+          essais--;
+          localStorage.setItem("essaisRestants", essais);
+          resultat.textContent = `❌ Le pseudo "${pseudo}" n'existe pas. (${essais} essais restants)`;
+          resultat.style.color = "red";
+
+          if (essais <= 0) {
+            const finBlocage = Date.now() + BLOCAGE_MINUTES * 60000;
+            localStorage.setItem("blocageTimestamp", finBlocage);
+            resultat.textContent += `\n🚫 Tu es bloqué pendant ${BLOCAGE_MINUTES} minutes.`;
+            btn.disabled = true;
+          }
         } else {
-          resultat.textContent = `❌ Le pseudo "${pseudo}" n'existe pas`;
-          resultat.style.color = "#ff5555";
-          resultat.classList.add('showResult');
+          resultat.textContent = `✅ Le pseudo "${pseudo}" existe !`;
+          resultat.style.color = "limegreen";
+          sessionStorage.setItem("pseudo", pseudo);
+          sessionStorage.setItem("pseudoValide", "true");
+          localStorage.removeItem("essaisRestants");
+          localStorage.removeItem("blocageTimestamp");
+          setTimeout(() => (window.location.href = "menu.html"), 2000);
         }
       } catch (e) {
-        resultat.textContent = `❌ Erreur de connexion`;
-        resultat.style.color = "#ff5555";
-        resultat.classList.add('showResult');
+        resultat.textContent = "❌ Erreur lors de la vérification.";
+        resultat.style.color = "red";
+        console.error(e);
       }
     }
+
+    setInterval(miseAJourEtat, 1000);
+    window.onload = miseAJourEtat;
   </script>
 </body>
 </html>
