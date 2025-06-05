@@ -27,6 +27,41 @@
       padding: 30px;
       flex-direction: column;
       overflow: auto;
+      position: relative;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      opacity: 0;
+      transition: background-color 1.5s ease, opacity 1.5s ease;
+      pointer-events: none;
+    }
+
+    #overlay.show {
+      background-color: rgba(0,0,0,0.95);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #overlay span {
+      animation: fadeText 1s infinite alternate;
+    }
+
+    @keyframes fadeText {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
     }
 
     main {
@@ -43,14 +78,8 @@
     }
 
     @keyframes fadeInScale {
-      0% {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     h1 {
@@ -81,7 +110,6 @@
       color: #f9b800;
       outline: none;
       margin-bottom: 20px;
-      transition: box-shadow 0.3s ease;
     }
 
     input:focus {
@@ -98,9 +126,6 @@
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 0 15px #f9b80088;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
 
     button:hover:not(:disabled) {
@@ -111,27 +136,6 @@
     button:disabled {
       cursor: not-allowed;
       opacity: 0.5;
-      box-shadow: none;
-      transform: none;
-    }
-
-    button::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 300%;
-      height: 300%;
-      background: radial-gradient(circle, rgba(249,184,0,0.4) 10%, transparent 60%);
-      transform: translate(-50%, -50%) scale(0);
-      transition: transform 0.6s ease;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    button:active::before:not(:disabled) {
-      transform: translate(-50%, -50%) scale(1);
-      transition: transform 0s;
     }
 
     #resultat {
@@ -140,7 +144,6 @@
       color: #fffbe7;
       min-height: 1.5em;
       white-space: pre-line;
-      opacity: 1;
     }
 
     .loader {
@@ -175,20 +178,9 @@
       animation: loader3 0.6s infinite;
     }
 
-    @keyframes loader1 {
-      0% { transform: scale(0); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes loader2 {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(20px); }
-    }
-
-    @keyframes loader3 {
-      0% { transform: scale(1); }
-      100% { transform: scale(0); }
-    }
+    @keyframes loader1 { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+    @keyframes loader2 { 0% { transform: translateX(0); } 100% { transform: translateX(20px); } }
+    @keyframes loader3 { 0% { transform: scale(1); } 100% { transform: scale(0); } }
 
     #tuto {
       background: rgba(249, 184, 0, 0.1);
@@ -202,7 +194,6 @@
       box-shadow: 0 0 25px #f9b80099;
       line-height: 1.6;
       user-select: none;
-      animation: fadeInScale 1.8s ease forwards;
     }
 
     #tuto h2 {
@@ -244,35 +235,24 @@
   </style>
 </head>
 <body>
+  <div id="overlay"><span>Chargement...</span></div>
+
   <main>
     <h1>🔍 Vérifie ton pseudo NumWorks</h1>
-    <input
-      type="text"
-      id="pseudo"
-      placeholder="Entre ton pseudo NumWorks"
-      autocomplete="off"
-      autocorrect="off"
-      autocapitalize="off"
-      spellcheck="false"
-    />
+    <input type="text" id="pseudo" placeholder="Entre ton pseudo NumWorks" />
     <br />
     <button onclick="verifier()" id="verifierBtn">Vérifier</button>
     <p id="resultat"></p>
   </main>
 
-  <section id="tuto" aria-label="Tutoriel pour obtenir un pseudo NumWorks">
+  <section id="tuto">
     <h2>Comment obtenir un pseudo NumWorks valide ?</h2>
     <ol>
-      <li>
-        Crée un compte sur
-        <a href="https://my.numworks.com/" target="_blank" rel="noopener noreferrer"
-          >my.numworks.com</a
-        >.
-      </li>
+      <li>Crée un compte sur <a href="https://my.numworks.com/" target="_blank">my.numworks.com</a>.</li>
       <li>Connecte-toi, va dans <strong>Python</strong>.</li>
       <li>Upload un script, puis regarde l’URL dans <strong>Mes scripts</strong>.</li>
-      <li>https://my.numworks.com/python/<strong>*votre pseudo*</strong></li>
-      <li>Utilise le pseudo dans l’URL ici pour le vérifier.</li>
+      <li>https://my.numworks.com/python/<strong>ton_pseudo</strong></li>
+      <li>Utilise le pseudo ici pour le vérifier.</li>
     </ol>
     <p>Une erreur peut venir d’un pare-feu ou problème réseau. 🌐💻</p>
   </section>
@@ -284,16 +264,14 @@
     function estBloque() {
       const blocage = localStorage.getItem("blocageTimestamp");
       if (!blocage) return false;
-      const maintenant = Date.now();
-      return maintenant < parseInt(blocage);
+      return Date.now() < parseInt(blocage);
     }
 
     function miseAJourEtat() {
       const btn = document.getElementById("verifierBtn");
       const resultat = document.getElementById("resultat");
       if (estBloque()) {
-        const restant =
-          parseInt(localStorage.getItem("blocageTimestamp")) - Date.now();
+        const restant = parseInt(localStorage.getItem("blocageTimestamp")) - Date.now();
         const minutes = Math.floor(restant / 60000);
         const secondes = Math.floor((restant % 60000) / 1000);
         resultat.textContent = `🚫 Tu es bloqué pendant encore ${minutes} min ${secondes} sec.`;
@@ -319,7 +297,6 @@
         return;
       }
 
-      // Affichage loader animé
       resultat.innerHTML = `<span class="loader"><span></span><span></span><span></span></span> Vérification...`;
       resultat.style.color = "orange";
 
@@ -332,11 +309,7 @@
 
         const data = await res.json();
 
-        if (
-          data.contents.includes("404") ||
-          data.contents.includes("not found") ||
-          data.contents.includes("Oops")
-        ) {
+        if (data.contents.includes("404") || data.contents.includes("not found") || data.contents.includes("Oops")) {
           essais--;
           localStorage.setItem("essaisRestants", essais);
           resultat.textContent = `❌ Le pseudo "${pseudo}" n'existe pas. (${essais} essais restants)`;
@@ -355,7 +328,11 @@
           sessionStorage.setItem("pseudoValide", "true");
           localStorage.removeItem("essaisRestants");
           localStorage.removeItem("blocageTimestamp");
-          setTimeout(() => (window.location.href = "menu.html"), 2000);
+
+          const overlay = document.getElementById("overlay");
+          overlay.classList.add("show");
+
+          setTimeout(() => window.location.href = "menu.html", 2000);
         }
       } catch (e) {
         resultat.textContent = "❌ Erreur lors de la vérification.";
