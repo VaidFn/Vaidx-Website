@@ -54,13 +54,6 @@
       to { opacity: 1; }
     }
 
-    .flag {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 2rem;
-    }
-
     .top-buttons {
       position: absolute;
       top: 20px;
@@ -133,7 +126,7 @@
     #btn-credits {
       position: fixed;
       top: 20px;
-      left: 60px;
+      left: 20px;
       background: linear-gradient(90deg, var(--jaune), var(--jaune-clair));
       color: #000;
       padding: 10px 22px;
@@ -303,7 +296,6 @@
   </style>
 </head>
 <body>
-  <div class="flag" id="flag"></div>
   <a href="credits.html" id="btn-credits">📝 Crédits</a>
 
   <header>
@@ -315,7 +307,7 @@
         <a href="https://github.com/numworks" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
       </div>
       <button id="theme-toggle">Sombre</button>
-      <button id="btn-deconnexion">Se dĂ©connecter</button>
+      <button id="btn-deconnexion">Se déconnecter</button>
     </div>
     <h1>Vaidx NumWorks</h1>
   </header>
@@ -390,26 +382,6 @@
     const toggleBtn = document.getElementById('theme-toggle');
     const root = document.documentElement;
     const deconnexionBtn = document.getElementById('btn-deconnexion');
-    const flagElement = document.getElementById('flag');
-
-    function setFlagBasedOnLanguage() {
-      const userLang = navigator.language || navigator.userLanguage;
-      let flagEmoji = '🇫🇷'; // Default flag
-
-      if (userLang.startsWith('fr')) {
-        flagEmoji = '🇫🇷'; // French flag
-      } else if (userLang.startsWith('en')) {
-        flagEmoji = '🇬🇧'; // English flag
-      } else if (userLang.startsWith('es')) {
-        flagEmoji = '🇪🇸'; // Spanish flag
-      } else if (userLang.startsWith('de')) {
-        flagEmoji = '🇩🇪'; // German flag
-      } else if (userLang.startsWith('it')) {
-        flagEmoji = '🇮🇹'; // Italian flag
-      }
-
-      flagElement.textContent = flagEmoji;
-    }
 
     function setTheme(theme) {
       if (theme === 'light') {
@@ -435,7 +407,6 @@
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme') || 'dark';
       setTheme(savedTheme);
-      setFlagBasedOnLanguage();
     });
 
     deconnexionBtn.addEventListener('click', () => {
