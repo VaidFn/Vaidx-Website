@@ -261,6 +261,10 @@
     const MAX_ESSAIS = 3;
     const BLOCAGE_MINUTES = 10;
 
+    function generateToken() {
+      return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
+
     function estBloque() {
       const blocage = localStorage.getItem("blocageTimestamp");
       if (!blocage) return false;
@@ -322,16 +326,18 @@
             btn.disabled = true;
           }
         } else {
-          resultat.textContent = `✅ Le pseudo "${pseudo}" existe !`;
-          resultat.style.color = "limegreen";
+          const token = generateToken();
           sessionStorage.setItem("pseudoValide", "true");
+          sessionStorage.setItem("accessToken", token);
           localStorage.removeItem("essaisRestants");
           localStorage.removeItem("blocageTimestamp");
 
           const overlay = document.getElementById("overlay");
           overlay.classList.add("show");
 
-          setTimeout(() => window.location.href = "menu.html", 2000);
+          setTimeout(() => {
+            window.location.href = `menu.html?token=${token}`;
+          }, 2000);
         }
       } catch (e) {
         resultat.textContent = "❌ Erreur lors de la vérification.";
