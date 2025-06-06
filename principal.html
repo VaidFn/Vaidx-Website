@@ -369,6 +369,7 @@
     © 2025 Vaidx • Créé avec passion pour les fans de NumWorks 🐍
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const token = sessionStorage.getItem('accessToken');
@@ -410,6 +411,16 @@
         setTimeout(() => {
           window.location.href = 'index.html';
         }, 2010);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.altKey && event.key === 'w') {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
+        }
       });
     });
   </script>
