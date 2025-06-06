@@ -142,8 +142,17 @@
 
   <script>
     window.onload = function() {
-      if (!sessionStorage.getItem("pseudoValide")) {
-        window.location.href = "index.html"; // Redirige vers la page de vérification
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const storedToken = sessionStorage.getItem("accessToken");
+
+      if (!sessionStorage.getItem("pseudoValide") || token !== storedToken) {
+        window.location.href = "index.html";
+      } else {
+        history.pushState(null, null, window.location.href);
+        window.addEventListener('popstate', function(event) {
+          history.pushState(null, null, window.location.href);
+        });
       }
     };
   </script>
