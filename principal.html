@@ -379,56 +379,61 @@
   </footer>
 
   <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const root = document.documentElement;
-    const deconnexionBtn = document.getElementById('btn-deconnexion');
-
-    function setTheme(theme) {
-      if (theme === 'light') {
-        root.style.setProperty('--noir', '#f0f0f0');
-        root.style.setProperty('--gris', '#ffffff');
-        root.style.setProperty('--blanc', '#111');
-        toggleBtn.textContent = 'Clair';
-      } else {
-        root.style.setProperty('--noir', '#0d0d0d');
-        root.style.setProperty('--gris', '#1c1c1c');
-        root.style.setProperty('--blanc', '#eaeaea');
-        toggleBtn.textContent = 'Sombre';
-      }
-      localStorage.setItem('theme', theme);
+  // Dès que le DOM est prêt
+  window.addEventListener('DOMContentLoaded', () => {
+    const token = sessionStorage.getItem('accessToken');
+    if (!token) {
+      // Pas de token : redirection immédiate vers index.html
+      window.location.href = 'index.html';
     }
+  });
 
-    toggleBtn.addEventListener('click', () => {
-      const current = localStorage.getItem('theme') || 'dark';
-      const newTheme = current === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme);
-    });
+  // Bouton déconnexion
+  const btnDeconnexion = document.getElementById('btn-deconnexion');
+  if (btnDeconnexion) {
+    btnDeconnexion.addEventListener('click', () => {
+      // Supprime le token
+      sessionStorage.removeItem('accessToken');
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      setTheme(savedTheme);
+      // Crée un overlay noir semi-transparent pour effet fondu
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = 0;
+      overlay.style.left = 0;
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.backgroundColor = 'rgba(0,0,0,0)';
+      overlay.style.zIndex = 10000;
+      overlay.style.transition = 'background-color 2s ease-in-out';
+      document.body.appendChild(overlay);
 
-      // Vérification du token
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get('token');
-      const storedToken = sessionStorage.getItem("accessToken");
+      // Lance la transition
+      setTimeout(() => {
+        overlay.style.backgroundColor = 'rgba(0,0,0,0.8)';
+      }, 10);
 
-      // Vérifiez si l'utilisateur est valide
-      if (!sessionStorage.getItem("pseudoValide") || token !== storedToken) {
-        // Redirigez vers la page de vérification uniquement si non valide
-        window.location.href = "index.html";
-      }
-    });
-
-    deconnexionBtn.addEventListener('click', () => {
-      const darkenDiv = document.createElement('div');
-      darkenDiv.className = 'darken';
-      document.body.appendChild(darkenDiv);
-
+      // Après 2 secondes, redirection vers index.html
       setTimeout(() => {
         window.location.href = 'index.html';
-      }, 2000);
+      }, 2010);
     });
-  </script>
+  }
+
+  // Gestion du bouton thème (si tu l'as)
+  const btnThemeToggle = document.getElementById('theme-toggle');
+  if (btnThemeToggle) {
+    btnThemeToggle.addEventListener('click', () => {
+      const body = document.body;
+      // Exemple basique : toggle classe dark
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        btnThemeToggle.textContent = 'Sombre';
+      } else {
+        body.classList.add('dark');
+        btnThemeToggle.textContent = 'Clair';
+      }
+    });
+  }
+</script>
 </body>
 </html>
