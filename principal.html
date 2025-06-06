@@ -408,11 +408,14 @@
       const savedTheme = localStorage.getItem('theme') || 'dark';
       setTheme(savedTheme);
 
+      // Vérification du token
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get('token');
       const storedToken = sessionStorage.getItem("accessToken");
 
+      // Vérifiez si l'utilisateur est valide
       if (!sessionStorage.getItem("pseudoValide") || token !== storedToken) {
+        // Redirigez vers la page de vérification uniquement si non valide
         window.location.href = "index.html";
       }
     });
