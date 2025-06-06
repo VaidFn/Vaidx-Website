@@ -416,10 +416,18 @@
       document.addEventListener('keydown', (event) => {
         if (event.altKey && event.key === 'w') {
           confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
+            particleCount: 200,
+            spread: 100,
+            startVelocity: 30,
+            decay: 0.9,
+            scalar: 2,
+            origin: { y: 0 },
+            colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'],
           });
+
+          setTimeout(() => {
+            confetti.reset();
+          }, 4000);
         }
       });
     });
