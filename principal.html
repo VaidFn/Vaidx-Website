@@ -407,6 +407,14 @@
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme') || 'dark';
       setTheme(savedTheme);
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const storedToken = sessionStorage.getItem("accessToken");
+
+      if (!sessionStorage.getItem("pseudoValide") || token !== storedToken) {
+        window.location.href = "index.html";
+      }
     });
 
     deconnexionBtn.addEventListener('click', () => {
