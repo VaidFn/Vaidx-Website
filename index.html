@@ -324,7 +324,6 @@
         } else {
           resultat.textContent = `✅ Le pseudo "${pseudo}" existe !`;
           resultat.style.color = "limegreen";
-          sessionStorage.setItem("pseudo", pseudo);
           sessionStorage.setItem("pseudoValide", "true");
           localStorage.removeItem("essaisRestants");
           localStorage.removeItem("blocageTimestamp");
