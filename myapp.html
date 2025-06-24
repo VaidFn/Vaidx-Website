@@ -62,6 +62,32 @@
       box-shadow: 0 0 30px #f9b80044;
     }
 
+        .btn-retour {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(90deg, var(--jaune), var(--jaune-clair));
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(249, 184, 0, 0.7);
+      text-decoration: none;
+      z-index: 1000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-retour:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(249, 184, 0, 0.9);
+    }
+
+    .btn-retour::before {
+      content: "←";
+      margin-right: 8px;
+    }
+
+    
     .app-icon {
       width: 180px;
       margin: 0 auto 30px;
