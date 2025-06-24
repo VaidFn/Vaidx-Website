@@ -3,29 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <title>WebDFU NumWorks</title>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-21WRHSBWHK"></script>
-<script>
-    // Vérification du token accessToken dans sessionStorage
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-21WRHSBWHK"></script>
+  <script>
     window.addEventListener('DOMContentLoaded', () => {
       const token = sessionStorage.getItem('accessToken');
       if (!token) {
         window.location.href = 'index.html';
       }
     });
-  </script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-21WRHSBWHK');
-</script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-21WRHSBWHK');
+  </script>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* [Ton style CSS existant reste inchangé ici, donc conservé tel quel] */
     @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
-
     :root {
       --jaune: #f9b700;
       --jaune-clair: #ffcf3d;
@@ -33,13 +29,7 @@
       --gris: #1e1e1e;
       --blanc: #f0e6d2;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--noir);
@@ -51,7 +41,6 @@
       min-height: 100vh;
       padding: 20px;
     }
-
     .btn-retour {
       position: fixed;
       top: 20px;
@@ -66,17 +55,14 @@
       z-index: 1000;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .btn-retour:hover {
       transform: scale(1.1);
       box-shadow: 0 0 25px var(--jaune-clair);
     }
-
     .btn-retour::before {
       content: "←";
       margin-right: 8px;
     }
-
     main {
       background: var(--gris);
       max-width: 800px;
@@ -88,7 +74,6 @@
       flex-direction: column;
       gap: 30px;
     }
-
     h2 {
       color: var(--jaune);
       font-size: 2.8rem;
@@ -98,7 +83,6 @@
       margin-bottom: 20px;
       user-select: none;
     }
-
     label {
       font-weight: 600;
       font-size: 1.3rem;
@@ -106,11 +90,7 @@
       margin-bottom: 10px;
       user-select: none;
     }
-
-    input[type="file"] {
-      display: none;
-    }
-
+    input[type="file"] { display: none; }
     .file-label {
       display: inline-block;
       width: 100%;
@@ -126,19 +106,16 @@
       transition: background 0.3s ease, box-shadow 0.3s ease;
       user-select: none;
     }
-
     .file-label:hover {
       background: linear-gradient(90deg, var(--jaune-clair), var(--jaune));
       box-shadow: 0 6px 25px rgba(255, 207, 61, 0.8);
     }
-
     .buttons {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
     }
-
     button {
       flex: 1 1 180px;
       padding: 16px 0;
@@ -153,13 +130,11 @@
       user-select: none;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-
     button:hover, button:focus {
       outline: none;
       transform: scale(1.08);
       box-shadow: 0 8px 30px rgba(255, 207, 61, 0.9);
     }
-
     .log {
       background: #272727;
       border-radius: 15px;
@@ -175,26 +150,16 @@
       box-shadow: inset 0 0 20px rgba(255, 207, 61, 0.6);
       user-select: text;
     }
-
-    .log::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    .log::-webkit-scrollbar-track {
-      background: var(--gris);
-      border-radius: 12px;
-    }
-
+    .log::-webkit-scrollbar { width: 10px; }
+    .log::-webkit-scrollbar-track { background: var(--gris); border-radius: 12px; }
     .log::-webkit-scrollbar-thumb {
       background: rgba(249, 184, 0, 0.6);
       border-radius: 12px;
       transition: background 0.3s ease;
     }
-
     .log::-webkit-scrollbar-thumb:hover {
       background: rgba(255, 207, 61, 0.8);
     }
-
     code {
       font-family: monospace;
       background: #3c3c3c;
@@ -202,15 +167,9 @@
       border-radius: 5px;
       font-weight: 600;
     }
-
     @media (max-width: 480px) {
-      main {
-        padding: 25px 20px 30px;
-      }
-
-      button {
-        flex: 1 1 100%;
-      }
+      main { padding: 25px 20px 30px; }
+      button { flex: 1 1 100%; }
     }
   </style>
 </head>
@@ -219,7 +178,6 @@
 
   <main>
     <h2>WebDFU NumWorks</h2>
-
     <label for="fileInput">Choisissez un fichier <code>.dfu</code> :</label>
     <label for="fileInput" class="file-label" tabindex="0">📂 Choisir un fichier</label>
     <input type="file" id="fileInput" accept=".dfu" />
@@ -236,10 +194,16 @@
     <div class="log" id="log" aria-live="polite" aria-atomic="false">Journal WebDFU en attente...</div>
   </main>
 
+  <!-- Libs WebDFU -->
+  <script src="https://ti-planet.github.io/webdfu/dfu.js"></script>
+  <script src="https://ti-planet.github.io/webdfu/webdfu-util.js"></script>
+
   <script>
     const logArea = document.getElementById("log");
     const fileInput = document.getElementById("fileInput");
     const fileLabel = document.querySelector(".file-label");
+
+    let dfuDevice, dfuInterface;
 
     function log(message) {
       logArea.textContent += message + "\n";
@@ -247,62 +211,81 @@
     }
 
     fileInput.addEventListener('change', () => {
-      if (fileInput.files.length > 0) {
-        fileLabel.textContent = `📂 ${fileInput.files[0].name}`;
-      } else {
-        fileLabel.textContent = "📂 Choisir un fichier";
-      }
+      fileLabel.textContent = fileInput.files.length > 0
+        ? `📂 ${fileInput.files[0].name}`
+        : "📂 Choisir un fichier";
     });
 
-    async function getDevice() {
-      try {
-        const device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x0483 }] });
-        await device.open();
-        await device.selectConfiguration(1);
-        await device.claimInterface(0);
-        log("🔌 Appareil connecté !");
-        return device;
-      } catch (error) {
-        log("❌ Erreur : " + error.message);
-        throw error;
-      }
+    async function connect() {
+      dfuDevice = await dfu.findDevice();
+      if (!dfuDevice) throw new Error("Aucun périphérique DFU trouvé.");
+      await dfuDevice.open();
+      dfuInterface = await dfuDevice.getInterface();
     }
 
     document.getElementById("infoButton").addEventListener("click", async () => {
       try {
-        const device = await getDevice();
-        const info = `
-🖥️ Infos périphérique USB :
-- Vendor ID : 0x${device.vendorId.toString(16)}
-- Product ID : 0x${device.productId.toString(16)}
-- Manufacturer : ${device.manufacturerName || "inconnu"}
-- Produit : ${device.productName || "inconnu"}
-- Numéro de série : ${device.serialNumber || "inconnu"}
-        `;
-        log(info);
+        await connect();
+        const info = await dfuInterface.getStatus();
+        log(`🖥️ État : ${info.status}`);
       } catch (err) {
-        log("❌ Impossible d'obtenir les infos : " + err.message);
+        log("❌ Erreur info : " + err.message);
       }
     });
 
-    document.getElementById("flashButton").addEventListener("click", () => {
-      log("⚠️ Flash désactivé : la librairie DFU.js n'est pas intégrée.");
+    document.getElementById("flashButton").addEventListener("click", async () => {
+      if (!fileInput.files[0]) return log("❌ Aucun fichier .dfu sélectionné.");
+      try {
+        await connect();
+        const arrayBuffer = await fileInput.files[0].arrayBuffer();
+        await dfuInterface.download(new Uint8Array(arrayBuffer));
+        log("✅ Flash terminé.");
+      } catch (e) {
+        log("❌ Flash échoué : " + e.message);
+      }
     });
 
     document.getElementById("verifyButton").addEventListener("click", () => {
-      log("⚠️ Vérification désactivée : la librairie DFU.js n'est pas intégrée.");
+      log("🔎 Vérification non supportée dans ce mode.");
     });
 
-    document.getElementById("eraseButton").addEventListener("click", () => {
-      log("⚠️ Effacement désactivé : la librairie DFU.js n'est pas intégrée.");
+    document.getElementById("eraseButton").addEventListener("click", async () => {
+      try {
+        await connect();
+        await dfuInterface.erase();
+        log("🗑️ Mémoire effacée.");
+      } catch (e) {
+        log("❌ Effacement échoué : " + e.message);
+      }
     });
 
-    document.getElementById("resetButton").addEventListener("click", () => {
-      log("⚠️ Réinitialisation désactivée : la librairie DFU.js n'est pas intégrée.");
+    document.getElementById("resetButton").addEventListener("click", async () => {
+      try {
+        await connect();
+        await dfuInterface.reset();
+        log("🔄 Appareil redémarré.");
+      } catch (e) {
+        log("❌ Réinitialisation échouée : " + e.message);
+      }
     });
 
-    document.getElementById("backupButton").addEventListener("click", () => {
-      log("⚠️ Sauvegarde désactivée : la librairie DFU.js n'est pas intégrée.");
+    document.getElementById("backupButton").addEventListener("click", async () => {
+      try {
+        await connect();
+        const data = await dfuInterface.upload(0x10000);
+        const blob = new Blob([data], { type: "application/octet-stream" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "backup.dfu";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        log("💾 Sauvegarde terminée.");
+      } catch (e) {
+        log("❌ Sauvegarde échouée : " + e.message);
+      }
     });
   </script>
 </body>
